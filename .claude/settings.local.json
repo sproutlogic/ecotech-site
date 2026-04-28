@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start /B python -m http.server 3456)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3456)",
+      "Bash(python -m http.server 3456 --directory \"J:\\\\OneDrive\\\\Aarush Eco Tech\\\\Website\\\\ecotech-site\\\\OPUS\\\\Output\\\\site\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where python:*)",
+      "Bash(where python3:*)",
+      "Bash(where node:*)"
+    ]
+  }
+}

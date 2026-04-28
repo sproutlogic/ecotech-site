@@ -1,0 +1,580 @@
+/* ═══════════════════════════════════════════════
+   AARUSH ECO TECH — advertise.css
+   Page-Specific Styles for Advertise Page
+   Version 3.0 — Updated with LED Screen + ESG Advantage Section
+═══════════════════════════════════════════════ */
+
+/*
+  NOTE: This file supplements the inline <style> block in advertise.html.
+  The primary design tokens and layout rules live inline (for render performance).
+  This file adds:
+    1. Page-specific navigation overrides
+    2. LED Screen visual (replaces phone mockup in Contextual Intelligence)
+    3. ESG Advantage section (new section inspired by screenshot)
+    4. Impact card component
+    5. Minor copy-adjacent refinements
+
+  Token reference (all defined in inline :root):
+    --ink, --deep, --mid, --surface, --raised
+    --gold, --gold-lt, --gold-dim, --gold-line
+    --saffron, --cream, --mist, --ghost, --whisper
+    --serif, --sans, --mono
+    --ease, --ease-out
+*/
+
+/* ════════════════════════════════════════════
+   1. PAGE-SPECIFIC NAVIGATION
+   Pill-strip section anchors + agencies CTA
+════════════════════════════════════════════ */
+
+/* Ensures the section-strip nav scrolls gracefully on mid widths */
+@media (max-width: 1100px) and (min-width: 901px) {
+  .nav-sections {
+    display: none;
+  }
+}
+
+/* Mobile: show condensed agency link only */
+@media (max-width: 640px) {
+  .nav-agencies {
+    display: none;
+  }
+}
+
+/* ════════════════════════════════════════════
+   2. LED SCREEN VISUAL — Contextual Intelligence
+   Replaces the phone (.phone-shell) mockup
+════════════════════════════════════════════ */
+
+/* Remove any lingering phone styles from this page */
+.phone-shell,
+.phone-frame,
+.phone-notch,
+.phone-screen,
+.phone-home-bar,
+.phone-reflection {
+  display: none !important;
+}
+
+/* LED Screen container positioning */
+.led-screen-shell {
+  position: relative;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+/* Pylon column layout */
+.led-pylon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Outer frame (cabinet) */
+.led-frame {
+  width: 100%;
+  background: var(--raised);
+  border: 2px solid rgba(200, 151, 58, 0.5);
+  border-radius: 6px 6px 4px 4px;
+  padding: 10px 10px 0;
+  box-shadow:
+    0 0 60px rgba(200, 151, 58, 0.15),
+    0 0 120px rgba(200, 151, 58, 0.06),
+    0 40px 80px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(200, 151, 58, 0.08);
+  position: relative;
+}
+
+/* Corner bolt accents */
+.led-frame::before,
+.led-frame::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--gold-line);
+  border-radius: 50%;
+}
+.led-frame::before { top: 6px; left: 6px; }
+.led-frame::after  { top: 6px; right: 6px; }
+
+/* LED panel (the display surface) */
+.led-screen {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  background: #0a0306;
+  transition: background 0.6s var(--ease);
+}
+
+/* Pixel grid overlay — simulates LED matrix */
+.led-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent, transparent 3px,
+      rgba(0, 0, 0, 0.12) 3px, rgba(0, 0, 0, 0.12) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent, transparent 3px,
+      rgba(0, 0, 0, 0.12) 3px, rgba(0, 0, 0, 0.12) 4px
+    );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Screen glare */
+.led-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 60%
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Inner content layer */
+.led-screen-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.25rem;
+}
+
+.led-screen-emoji {
+  font-size: 2.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 12px rgba(200, 151, 58, 0.6));
+}
+
+.led-screen-brand {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.led-screen-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+.led-screen-sov {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.06em;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 0.2rem 0.45rem;
+  border-radius: 2px;
+  z-index: 4;
+}
+
+.led-screen-time {
+  position: absolute;
+  bottom: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.1em;
+  z-index: 4;
+}
+
+/* Scan-line sweep animation */
+.led-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 151, 58, 0.15),
+    transparent
+  );
+  animation: ledScan 4s linear infinite;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes ledScan {
+  0%   { top: -2px; }
+  100% { top: 100%; }
+}
+
+/* Status bar below screen */
+.led-status-bar {
+  background: var(--surface);
+  border: 1px solid var(--gold-line);
+  border-top: none;
+  padding: 0.45rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0 0 3px 3px;
+}
+
+.led-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: mapPulse 1.8s infinite;
+}
+
+@keyframes mapPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+.led-status-text {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* Signal strength bars */
+.led-status-sig {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+}
+
+.led-sig-bar {
+  width: 3px;
+  background: var(--gold-line);
+  border-radius: 1px;
+}
+.led-sig-bar:nth-child(1) { height: 5px;  background: var(--gold); }
+.led-sig-bar:nth-child(2) { height: 8px;  background: var(--gold); }
+.led-sig-bar:nth-child(3) { height: 11px; background: var(--gold); }
+.led-sig-bar:nth-child(4) { height: 14px; }
+.led-sig-bar:nth-child(5) { height: 17px; }
+
+/* Mounting pole */
+.led-pole-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.led-pole {
+  width: 10px;
+  height: 60px;
+  background: linear-gradient(
+    to right,
+    var(--raised),
+    var(--surface),
+    var(--raised)
+  );
+  border-left: 1px solid var(--gold-line);
+  border-right: 1px solid var(--gold-line);
+}
+
+.led-base {
+  width: 60px;
+  height: 8px;
+  background: var(--raised);
+  border: 1px solid var(--gold-line);
+  border-radius: 2px;
+}
+
+/* Ambient glow pool beneath pylon */
+.led-glow {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140%;
+  height: 80px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(200, 151, 58, 0.12) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Responsive: smaller LED on mobile */
+@media (max-width: 480px) {
+  .led-screen-shell {
+    max-width: 200px;
+  }
+  .led-screen-brand {
+    font-size: 0.9rem;
+  }
+  .led-screen-emoji {
+    font-size: 2.2rem;
+  }
+}
+
+/* ════════════════════════════════════════════
+   3. ESG ADVANTAGE SECTION
+   New section between AI Simulation and CTA
+════════════════════════════════════════════ */
+
+.esg-adv-section {
+  background: var(--deep);
+}
+
+/* Two-column layout */
+.esg-adv-wrap {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .esg-adv-wrap {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+/* Headlines */
+.esg-adv-headline {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.esg-adv-headline em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.esg-adv-body {
+  font-size: 0.95rem;
+  color: var(--ghost);
+  line-height: 1.85;
+  max-width: 480px;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Campaign Impact Card ── */
+.impact-card {
+  margin-top: 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--gold-line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.impact-card-header {
+  padding: 0.9rem 1.75rem;
+  background: var(--raised);
+  border-bottom: 1px solid var(--gold-line);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.impact-card-body {
+  padding: 1.75rem;
+}
+
+.impact-flow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.impact-node {
+  text-align: center;
+  flex: 1;
+  min-width: 80px;
+}
+
+.impact-val {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: var(--gold-lt);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.impact-unit {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ghost);
+}
+
+.impact-arrow {
+  color: var(--gold-line);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.impact-note {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--gold-line);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--ghost);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ── ESG Advantage Feature Cards ── */
+.esg-adv-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--gold-line);
+  border: 1px solid var(--gold-line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.esg-adv-card {
+  background: var(--surface);
+  padding: 2rem 2rem 2rem 1.75rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: background 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.esg-adv-card:hover {
+  background: var(--raised);
+}
+
+/* Left accent line on hover */
+.esg-adv-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), var(--saffron));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.esg-adv-card:hover::before {
+  transform: scaleY(1);
+}
+
+.esg-adv-card-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+.esg-adv-card-title {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  color: var(--cream);
+}
+
+.esg-adv-card-body {
+  font-size: 0.82rem;
+  color: var(--ghost);
+  line-height: 1.7;
+}
+
+/* Responsive: stack cards on mobile */
+@media (max-width: 600px) {
+  .esg-adv-card {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/* ════════════════════════════════════════════
+   4. COPY / CREDIBILITY REFINEMENTS
+   Small tweaks to feel less "startup-ish"
+════════════════════════════════════════════ */
+
+/* Map badge — updated to say "Pilot Network" not "Live Network" */
+.map-badge {
+  /* inherits from inline, no change needed — text updated in HTML */
+}
+
+/* Footer: agencies link colour hint */
+.footer-links a[href="agencies.html"] {
+  color: var(--gold);
+  opacity: 0.7;
+}
+.footer-links a[href="agencies.html"]:hover {
+  opacity: 1;
+  color: var(--gold-lt);
+}
+
+/* CTA: "Pilot Partner" badge styling */
+.cta-overline {
+  /* inherits — text updated in HTML */
+}
+
+/* ════════════════════════════════════════════
+   5. GENERAL POLISH
+════════════════════════════════════════════ */
+
+/* Smooth transition for led screen content changes */
+#dpScreen {
+  transition: background 0.5s ease, opacity 0.28s ease, transform 0.28s ease;
+}
+
+/* Ensure led-screen-inner text is always above pixel grid */
+.led-screen-inner > * {
+  position: relative;
+  z-index: 6;
+}
+
+/* Impact flow: responsive stacking */
+@media (max-width: 480px) {
+  .impact-flow {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .impact-arrow {
+    transform: rotate(90deg);
+  }
+  .impact-node {
+    min-width: 100%;
+  }
+}

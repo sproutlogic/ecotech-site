@@ -1,0 +1,130 @@
+﻿<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div id="scroll-progress"></div>
+
+<nav class="site-nav" id="siteNav" aria-label="Main navigation">
+  <div class="site-nav__inner">
+
+    <a href="index.html" class="site-nav__logo" aria-label="Aarush Eco Tech home">
+      <img src="assets/images/logo.svg" alt="" class="logo-img" width="40" height="40">
+      <span class="site-nav__wordmark"><span class="brand-aarush">Aarush</span> <span class="brand-eco">Eco Tech</span></span>
+    </a>
+
+    <ul class="site-nav__links" id="navLinks" role="list">
+      <li><a href="index.html" data-nav="index.html">Home</a></li>
+      <li><a href="technology.html" data-nav="technology.html">Technology</a></li>
+
+      <li>
+        <span class="nav-solutions" id="nav-solutions-trigger" 
+          role="button" tabindex="0"
+          aria-haspopup="true" aria-expanded="false">
+          Solutions
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" 
+              stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </span>
+
+        <div class="solutions-dropdown" id="solutions-dropdown" 
+          role="region" aria-label="Solutions menu">
+          
+          <div class="dd-header">
+            <span class="dd-header-label">Our platform</span>
+          </div>
+
+          <div class="dd-grid">
+
+            <a class="dd-item" href="industries.html" 
+              aria-label="Industries – Sectors and spaces we serve">
+              <div class="dd-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                  stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7" rx="1"/>
+                  <rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/>
+                  <rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+              </div>
+              <div class="dd-text">
+                <div class="dd-title-row">
+                  <span class="dd-title">Industries</span>
+                </div>
+                <span class="dd-sub">Sectors and spaces we serve</span>
+              </div>
+            </a>
+
+            <a class="dd-item" href="esg-analytics.html"
+              aria-label="ESG Analytics – Live sustainability reporting">
+              <div class="dd-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                  stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 17l4-8 4 5 3-3 4 6"/>
+                  <circle cx="20" cy="6" r="2"/>
+                </svg>
+              </div>
+              <div class="dd-text">
+                <div class="dd-title-row">
+                  <span class="dd-title">ESG Analytics</span>
+                </div>
+                <span class="dd-sub">Live sustainability reporting</span>
+              </div>
+            </a>
+
+            <div class="dd-divider"></div>
+
+            <a class="dd-item" href="resource.html"
+              aria-label="RE-Source – Circular supply chain network">
+              <div class="dd-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="1 4 1 10 7 10"/>
+                  <polyline points="23 20 23 14 17 14"/>
+                  <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
+                </svg>
+              </div>
+              <div class="dd-text">
+                <div class="dd-title-row">
+                  <span class="dd-title">RE-Source</span>
+                </div>
+                <span class="dd-sub">Circular supply chain network</span>
+              </div>
+            </a>
+
+            <a class="dd-item dd-item--muted" href="advertise.html"
+              aria-label="Advertising Partners – UrbanReach urban media network">
+              <div class="dd-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                  stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+                </svg>
+              </div>
+              <div class="dd-text">
+                <div class="dd-title-row">
+                  <span class="dd-title dd-title--deemphasised">Advertising Partners</span>
+                  <span class="dd-badge dd-badge--urban">↗ UrbanReach</span>
+                </div>
+                <span class="dd-sub">Urban media on our bin network</span>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </li>
+
+      <li><a href="insights.html" data-nav="insights.html">Insights</a></li>
+      <li><a href="about.html" data-nav="about.html">About</a></li>
+    </ul>
+
+    <div class="site-nav__right">
+      <a href="contact.html" class="site-nav__cta">Get in touch</a>
+      <button class="site-nav__hamburger" id="navHamburger" onclick="toggleMobileMenu()"
+        aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<div class="site-nav__overlay" id="navOverlay" onclick="toggleMobileMenu()" aria-hidden="true"></div>

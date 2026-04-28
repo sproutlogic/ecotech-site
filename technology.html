@@ -1,0 +1,4176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India's First ESG Analytics & Zero-CapEx Smart Bins | Aarush Eco Tech</title>
+  <meta name="description"
+    content="India's first bin-level ESG analytics, circular resource recovery network (RE-Source), and zero-capex smart bin deployment — the only waste platform combining all three. Proven across 3 active pilots.">
+  <link rel="canonical" href="https://ecotech.co.in/technology.html">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <meta name="theme-color" content="#16a34a">
+
+  <meta property="og:title" content="India's First ESG Analytics & Zero-CapEx Smart Bins | Aarush Eco Tech">
+  <meta property="og:description"
+    content="Bin-level ESG analytics, circular resource recovery (RE-Source), and zero-capex deployment — three global firsts in one waste management platform.">
+  <meta property="og:image" content="https://ecotech.co.in/assets/images/smart-bin-architecture.webp">
+  <meta property="og:url" content="https://ecotech.co.in/technology.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Aarush Eco Tech">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="India's First ESG Analytics & Zero-CapEx Smart Bins | Aarush Eco Tech">
+  <meta name="twitter:description"
+    content="Three global firsts: bin-level ESG analytics, circular resource recovery, zero-capex deployment. Built and proven in India.">
+  <meta name="twitter:image" content="https://ecotech.co.in/assets/images/smart-bin-architecture.webp">
+
+  <link rel="alternate" hreflang="en-IN" href="https://ecotech.co.in/technology.html">
+  <link rel="alternate" hreflang="x-default" href="https://ecotech.co.in/technology.html">
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N7F1G7D39K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-N7F1G7D39K');
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="global.css?v=20260317">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="page-technology.css?v=20260318-01">
+
+  <style>
+    /* ── Map fix ── */
+    #map {
+      min-height: 380px !important;
+      flex: 0 0 380px !important;
+    }
+
+    /* ── Ecosystem viz (hero right panel) ── */
+    .tech-ecosystem-viz {
+      width: 100%;
+      position: relative;
+    }
+
+    .tech-ecosystem-viz svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Revolving orbit text around AARUSH */
+    #revolving-text-group {
+      transform-origin: 310px 265px;
+      animation: orbit-text-spin 22s linear infinite;
+    }
+
+    @keyframes orbit-text-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ESG floating compliance labels — plain text, no pills */
+    .esg-label {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+      font-size: 10px;
+      font-family: 'DM Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 700;
+      background: none;
+      border: none;
+      color: rgba(6, 182, 212, 0.88);
+      padding: 0;
+    }
+
+    [data-label="SDG"] {
+      left: 74%;
+      top: 28%;
+    }
+
+    [data-label="Net Zero"] {
+      left: 16%;
+      top: 24%;
+    }
+
+    [data-label="BRSR"] {
+      left: 83%;
+      top: 56%;
+    }
+
+    [data-label="EPR"] {
+      left: 20%;
+      top: 88%;
+    }
+
+    [data-label="Paris Agreement"] {
+      left: 4%;
+      top: 56%;
+    }
+
+    /* ── Architecture flow ── */
+    .arch-flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .arch-node {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      min-width: 130px;
+      flex: 1;
+      max-width: 160px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .03);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .arch-node::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .arch-node:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(22, 163, 74, 0.12);
+      border-color: #86efac;
+    }
+
+    .arch-node:hover::before {
+      opacity: 1;
+    }
+
+    .arch-node--highlight {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .arch-node-icon {
+      font-size: 1.5rem;
+      margin-bottom: .75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .arch-node:hover .arch-node-icon {
+      transform: scale(1.15);
+    }
+
+    /* Color-coded icons for each step in the flow */
+    .arch-node:nth-child(1) .arch-node-icon {
+      color: #059669;
+      background: #d1fae5;
+    }
+
+    .arch-node:nth-child(3) .arch-node-icon {
+      color: #2563eb;
+      background: #dbeafe;
+    }
+
+    .arch-node:nth-child(5) .arch-node-icon {
+      color: #9333ea;
+      background: #f3e8ff;
+    }
+
+    .arch-node:nth-child(7) .arch-node-icon {
+      color: #ea580c;
+      background: #ffedd5;
+    }
+
+    .arch-node:nth-child(9) .arch-node-icon {
+      color: #0891b2;
+      background: #cffafe;
+    }
+
+    .arch-node-title {
+      font-size: .85rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: .25rem;
+    }
+
+    .arch-node-sub {
+      font-size: .72rem;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+
+    .arch-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 .25rem;
+      color: #d1d5db;
+      font-size: 1.2rem;
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+
+    @media(max-width:640px) {
+      .arch-flow {
+        gap: .5rem;
+      }
+
+      .arch-arrow {
+        transform: rotate(90deg);
+      }
+
+      .arch-node {
+        min-width: 100px;
+      }
+    }
+
+    /* ── Hardware spec cards ── */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .spec-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .03);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .spec-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(22, 163, 74, 0.10);
+      border-color: #86efac;
+    }
+
+    .spec-card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin: 0 auto 0.75rem;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .spec-card:hover .spec-card-icon {
+      transform: scale(1.15);
+    }
+
+    .spec-card-title {
+      font-size: .9rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: .3rem;
+    }
+
+    .spec-card-sub {
+      font-size: .75rem;
+      color: #6b7280;
+      line-height: 1.45;
+    }
+
+    .spec-card--yellow .spec-card-icon {
+      color: #ca8a04;
+      background: #fef9c3;
+    }
+
+    .spec-card--green .spec-card-icon {
+      color: #059669;
+      background: #d1fae5;
+    }
+
+    .spec-card--blue .spec-card-icon {
+      color: #2563eb;
+      background: #dbeafe;
+    }
+
+    .spec-card--violet .spec-card-icon {
+      color: #9333ea;
+      background: #f3e8ff;
+    }
+
+    .spec-card--orange .spec-card-icon {
+      color: #ea580c;
+      background: #ffedd5;
+    }
+
+    .spec-card--cyan .spec-card-icon {
+      color: #0891b2;
+      background: #cffafe;
+    }
+
+    /* ── USP line ── */
+    .tech-hero-usp {
+      font-family: var(--ff-head);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: rgba(34, 197, 94, .9);
+      font-weight: 600;
+      letter-spacing: .01em;
+      margin: -.5rem 0 1.25rem;
+    }
+
+    /* ── Micro reassurance ── */
+    .tech-hero-micro {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .4);
+      margin: -.75rem 0 1.75rem;
+      letter-spacing: .02em;
+    }
+
+    /* ── Pilot result callout ── */
+    .tech-hero-pilot {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 10px;
+      padding: .6rem 1.25rem;
+      margin-bottom: 1.75rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .thp-metric {
+      font-family: var(--ff-head);
+      font-size: .9rem;
+      font-weight: 700;
+      color: #22c55e;
+    }
+
+    .thp-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255, 255, 255, .2);
+    }
+
+    .thp-source {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .55);
+    }
+
+    /* ── RE-Source preview ── */
+    .rs-preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+
+    @media(max-width:768px) {
+      .rs-preview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .rs-preview-copy p {
+      font-size: .92rem;
+      color: #4b5563;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── Photos ── */
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .photos-grid img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      display: block;
+    }
+
+    /* ── FAQ ── */
+    .faq-accordion {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 1.1rem 0;
+      font-size: .95rem;
+      font-weight: 600;
+      color: #111827;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .faq-q::after {
+      content: '+';
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: .2s;
+    }
+
+    .faq-q[aria-expanded="true"]::after {
+      content: '−';
+    }
+
+    .faq-a {
+      display: none;
+      padding-bottom: 1.1rem;
+    }
+
+    .faq-a p {
+      font-size: .88rem;
+      color: #4b5563;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════════════════
+       NEW SECTIONS
+    ══════════════════════════════════════════════════ */
+
+    /* ── Nervous system statement ── */
+    .nervous-system-bar {
+      background: #0a0f1e;
+      padding: 3.5rem 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nervous-system-bar .ns-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #16a34a;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .nervous-system-bar .ns-headline {
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .nervous-system-bar .ns-headline em {
+      font-style: normal;
+      color: #22c55e;
+    }
+
+    /* ── The Signal — 4 seconds ── */
+    .signal-section {
+      background: #0a0f1e;
+      padding: 6rem 0 5rem;
+    }
+
+    .signal-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .signal-kicker {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #22c55e;
+      text-transform: uppercase;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .signal-h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.75rem;
+      line-height: 1.15;
+    }
+
+    .signal-sub {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .signal-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .signal-timeline::before {
+      content: '';
+      position: absolute;
+      top: 3.25rem;
+      left: 12.5%;
+      width: 75%;
+      height: 2px;
+      background: linear-gradient(90deg, #16a34a 0%, #22c55e 60%, rgba(34, 197, 94, 0.2) 100%);
+      z-index: 0;
+    }
+
+    .signal-runner {
+      position: absolute;
+      top: 3.25rem;
+      margin-top: -1px;
+      width: 60px;
+      height: 4px;
+      border-radius: 4px;
+      background: #4ade80;
+      box-shadow: 0 0 15px 4px rgba(74, 222, 128, 0.6);
+      z-index: 0;
+      animation: signal-travel 5s linear infinite;
+    }
+
+    @keyframes signal-travel {
+
+      /* Step 1 */
+      0% {
+        left: 12.5%;
+        opacity: 0;
+        transform: translateX(-50%) scaleX(0.2);
+      }
+
+      2% {
+        left: 12.5%;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      5% {
+        left: 12.5%;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      /* Step 2 */
+      25% {
+        left: 37.5%;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      30% {
+        left: 37.5%;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      /* Step 3 */
+      50% {
+        left: 62.5%;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      55% {
+        left: 62.5%;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      /* Step 4 */
+      75% {
+        left: 87.5%;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      80% {
+        left: 87.5%;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      /* Fade Out */
+      84% {
+        left: 87.5%;
+        opacity: 0;
+        transform: translateX(-50%) scaleX(0.2);
+      }
+
+      100% {
+        left: 87.5%;
+        opacity: 0;
+      }
+    }
+
+    .signal-step {
+      text-align: center;
+      padding: 0 1rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .signal-step-second {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #16a34a;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .signal-step-bubble {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(22, 163, 74, 0.12);
+      border: 2px solid #16a34a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      position: relative;
+      color: #22c55e;
+    }
+
+    .signal-step-bubble::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      opacity: 0;
+      animation: signal-pulse 5s ease-out infinite;
+    }
+
+    .signal-step:nth-child(1) .signal-step-bubble::after {
+      animation-delay: 0s;
+    }
+
+    .signal-step:nth-child(2) .signal-step-bubble::after {
+      animation-delay: 1.25s;
+    }
+
+    .signal-step:nth-child(3) .signal-step-bubble::after {
+      animation-delay: 2.5s;
+    }
+
+    .signal-step:nth-child(4) .signal-step-bubble::after {
+      animation-delay: 3.75s;
+    }
+
+    @keyframes signal-pulse {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      30% {
+        opacity: 0;
+        transform: scale(1.6);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.6);
+      }
+    }
+
+    .signal-step-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .signal-step-desc {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.48);
+      line-height: 1.55;
+    }
+
+    .signal-outcome {
+      max-width: 680px;
+      margin: 3.5rem auto 0;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .signal-outcome-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .signal-outcome-text {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+
+    .signal-outcome-text strong {
+      color: #22c55e;
+    }
+
+    @media(max-width: 640px) {
+      .signal-timeline {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .signal-timeline::before,
+      .signal-runner {
+        display: none;
+      }
+    }
+
+    /* ── Outcomes / Worker benefits strip ── */
+    .outcomes-strip {
+      background: #f0fdf4;
+      border-top: 2px solid #d1fae5;
+      border-bottom: 2px solid #d1fae5;
+      padding: 3.5rem 0;
+    }
+
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    @media(max-width: 768px) {
+      .outcomes-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .outcomes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .outcome-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .outcome-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: #15803d;
+      margin-bottom: 0.3rem;
+    }
+
+    .outcome-desc {
+      font-size: 0.8rem;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    /* ── Pilot proof section ── */
+    .proof-section {
+      background: #111827;
+      padding: 6rem 0;
+      color: #fff;
+    }
+
+    .proof-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .proof-kicker {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #22c55e;
+      text-transform: uppercase;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .proof-h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.75rem;
+    }
+
+    .proof-sub {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.5);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    @media(max-width: 768px) {
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .proof-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .proof-card:hover {
+      border-color: rgba(34, 197, 94, 0.35);
+    }
+
+    .proof-card-location {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #22c55e;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .proof-card-sector {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .proof-stat-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .proof-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .proof-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .proof-stat-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #22c55e;
+    }
+
+    .proof-global-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding-top: 2.5rem;
+    }
+
+    @media(max-width: 640px) {
+      .proof-global-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .proof-gs-item {
+      text-align: center;
+      padding: 1.25rem 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .proof-gs-val {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .proof-gs-val span {
+      color: #22c55e;
+    }
+
+    .proof-gs-label {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.4;
+    }
+
+    /* ── Bridge CTA to Solutions ── */
+    .bridge-cta-section {
+      background: linear-gradient(135deg, #064e3b 0%, #0f6e56 40%, #16a34a 80%, #22c55e 100%);
+      padding: 6rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bridge-cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(255, 255, 255, 0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .bridge-cta-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .bridge-cta-h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin: 0 0 1rem;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bridge-cta-sub {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+
+    .bridge-cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .bridge-btn-primary {
+      background: #fff;
+      color: #0f6e56;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .bridge-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .bridge-btn-ghost {
+      background: transparent;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .bridge-btn-ghost:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* ── World-First Credentials section ── */
+    .world-first-section {
+      background: linear-gradient(180deg, #060c1a 0%, #0d1529 100%);
+      padding: 5.5rem 0 5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .wf-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .wf-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      color: #f59e0b;
+      text-transform: uppercase;
+      background: rgba(245, 158, 11, .1);
+      border: 1px solid rgba(245, 158, 11, .25);
+      border-radius: 999px;
+      padding: .3rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .wf-h2 {
+      font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 .75rem;
+      line-height: 1.18;
+    }
+
+    .wf-sub {
+      font-size: .95rem;
+      color: rgba(255, 255, 255, .5);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    .wf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media(max-width:900px) {
+      .wf-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .wf-card {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 20px;
+      padding: 2.25rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .wf-card:hover {
+      border-color: rgba(245, 158, 11, .35);
+      transform: translateY(-3px);
+    }
+
+    .wf-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f59e0b, #fbbf24, transparent);
+    }
+
+    .wf-card--green::before {
+      background: linear-gradient(90deg, #16a34a, #22c55e, transparent);
+    }
+
+    .wf-card--green:hover {
+      border-color: rgba(34, 197, 94, .4);
+    }
+
+    .wf-card--blue::before {
+      background: linear-gradient(90deg, #2563eb, #60a5fa, transparent);
+    }
+
+    .wf-card--blue:hover {
+      border-color: rgba(96, 165, 250, .4);
+    }
+
+    .wf-stamp {
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      color: #f59e0b;
+      text-transform: uppercase;
+      background: rgba(245, 158, 11, .12);
+      border: 1px solid rgba(245, 158, 11, .25);
+      border-radius: 999px;
+      padding: .2rem .7rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .wf-stamp--green {
+      color: #22c55e;
+      background: rgba(34, 197, 94, .1);
+      border-color: rgba(34, 197, 94, .25);
+    }
+
+    .wf-stamp--blue {
+      color: #60a5fa;
+      background: rgba(96, 165, 250, .1);
+      border-color: rgba(96, 165, 250, .25);
+    }
+
+    .wf-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .wf-card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 .75rem;
+      line-height: 1.25;
+    }
+
+    .wf-card-desc {
+      font-size: .86rem;
+      color: rgba(255, 255, 255, .55);
+      line-height: 1.65;
+      margin: 0 0 1.25rem;
+    }
+
+    .wf-card-proof {
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      padding-top: 1.1rem;
+    }
+
+    .wf-proof-item {
+      font-size: .79rem;
+      color: rgba(255, 255, 255, .48);
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+
+    .wf-proof-item::before {
+      content: '✓';
+      color: #22c55e;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── Zero CapEx spotlight ── */
+    .zerocapex-section {
+      background: #060c1a;
+      padding: 5.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zerocapex-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 197, 94, .07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .zerocapex-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4.5rem;
+      align-items: center;
+    }
+
+    @media(max-width:768px) {
+      .zerocapex-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    .zerocapex-h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.12;
+      margin: 1rem 0 1rem;
+    }
+
+    .zerocapex-h2 em {
+      font-style: normal;
+      color: #22c55e;
+    }
+
+    .zerocapex-p {
+      font-size: .94rem;
+      color: rgba(255, 255, 255, .58);
+      line-height: 1.72;
+      margin: 0 0 1.5rem;
+    }
+
+    .zerocapex-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .zerocapex-list li {
+      font-size: .88rem;
+      color: rgba(255, 255, 255, .62);
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+    }
+
+    .zerocapex-list li::before {
+      content: '✓';
+      color: #22c55e;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .zerocapex-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: #16a34a;
+      color: #fff;
+      font-size: .92rem;
+      font-weight: 700;
+      padding: .85rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .15s, transform .15s;
+    }
+
+    .zerocapex-btn:hover {
+      background: #15803d;
+      transform: translateY(-1px);
+    }
+
+    .zerocapex-card {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(34, 197, 94, .2);
+      border-radius: 20px;
+      padding: 2.75rem 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .zerocapex-big-val {
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: #22c55e;
+      line-height: 1;
+      margin-bottom: .25rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .zerocapex-big-label {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .5rem;
+    }
+
+    .zerocapex-big-sub {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.55;
+    }
+
+    .zerocapex-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, .07);
+      margin: 1.75rem 0;
+    }
+
+    .zerocapex-trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .zerocapex-trio-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .zerocapex-trio-label {
+      font-size: .7rem;
+      color: rgba(255, 255, 255, .38);
+      margin-top: .2rem;
+      line-height: 1.4;
+    }
+
+    /* ── Chain of Custody Pipeline (light) ── */
+    .custody-pipeline-light {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    @media(max-width:768px) {
+      .custody-pipeline-light {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:480px) {
+      .custody-pipeline-light {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .custody-step-light {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .custody-step-light:hover {
+      border-color: #86efac;
+      box-shadow: 0 4px 20px rgba(22, 163, 74, .08);
+    }
+
+    .custody-bubble-light {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #f0fdf4;
+      border: 2px solid #86efac;
+      font-size: 1.5rem;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .custody-num-light {
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #16a34a;
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .custody-title-light {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: .4rem;
+    }
+
+    .custody-desc-light {
+      font-size: .82rem;
+      color: #4b5563;
+      line-height: 1.55;
+    }
+
+    .custody-tag-light {
+      display: inline-block;
+      margin-top: .75rem;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: #16a34a;
+      text-transform: uppercase;
+      background: #f0fdf4;
+      border: 1px solid #d1fae5;
+      border-radius: 999px;
+      padding: .2rem .7rem;
+    }
+
+    /* ── ROI Calculator (light) ── */
+    .calc-wrap-light {
+      background: #fff;
+      border: 1px solid #d1fae5;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(22, 163, 74, .06);
+    }
+
+    .calc-grid-light {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    @media(max-width:768px) {
+      .calc-grid-light {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .calc-inputs-light h3,
+    .calc-outputs-light h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 1.5rem;
+    }
+
+    .calc-field-light {
+      margin-bottom: 1.25rem;
+    }
+
+    .calc-field-light label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: .4rem;
+    }
+
+    .calc-field-light label span {
+      color: #16a34a;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .calc-field-light input[type="range"] {
+      width: 100%;
+      accent-color: #16a34a;
+    }
+
+    .calc-select-light {
+      width: 100%;
+      padding: .55rem .75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: .85rem;
+      color: #374151;
+      background: #fff;
+    }
+
+    .calc-output-cards-light {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .calc-output-card-light {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+    }
+
+    .calc-output-card-light--green {
+      background: #f0fdf4;
+      border: 1px solid #d1fae5;
+    }
+
+    .calc-output-card-light--blue {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+
+    .calc-output-card-light--amber {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+    }
+
+    .coc-label-light {
+      font-size: .88rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .coc-unit-light {
+      font-size: .7rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    .coc-val-light {
+      font-size: 1.6rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .coc-val-light--green {
+      color: #16a34a;
+    }
+
+    .coc-val-light--blue {
+      color: #2563eb;
+    }
+
+    .coc-val-light--amber {
+      color: #d97706;
+    }
+
+    .calc-disclaimer-light {
+      font-size: .75rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+    }
+
+    /* ── Moat Comparison Table (light) ── */
+    .moat-table-light {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .85rem;
+    }
+
+    .moat-table-light th {
+      background: #f8fafc;
+      padding: .85rem 1rem;
+      text-align: left;
+      font-weight: 700;
+      color: #111827;
+      border-bottom: 2px solid #e5e7eb;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .moat-table-light td {
+      padding: .75rem 1rem;
+      border-bottom: 1px solid #f3f4f6;
+      color: #374151;
+      vertical-align: top;
+    }
+
+    .moat-table-light tbody tr:hover {
+      background: #f0fdf4;
+    }
+
+    .moat-x {
+      color: #ef4444;
+      font-weight: 700;
+      margin-right: .3rem;
+    }
+
+    .moat-check {
+      color: #16a34a;
+      font-weight: 700;
+      margin-right: .3rem;
+    }
+
+    .moat-tag-light {
+      display: inline-block;
+      font-size: .55rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: #d97706;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 999px;
+      padding: .1rem .5rem;
+      margin-left: .4rem;
+      vertical-align: middle;
+      text-transform: uppercase;
+    }
+
+    /* ── Live Terminal (light theme) ── */
+    .terminal-wrap-tech {
+      background: #1e293b;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .terminal-topbar-tech {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.25rem;
+      background: #0f172a;
+    }
+
+    .term-dot-tech {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .term-title-tech {
+      font-size: .7rem;
+      color: rgba(255, 255, 255, .4);
+      margin-left: .5rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .terminal-body-tech {
+      padding: 1.25rem 1.5rem;
+      max-height: 260px;
+      overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      line-height: 1.8;
+    }
+
+    .term-line-tech {
+      color: rgba(255, 255, 255, .55);
+    }
+
+    .term-ts {
+      color: rgba(255, 255, 255, .25);
+      margin-right: .5rem;
+    }
+
+    .term-tag-ok {
+      color: #22c55e;
+    }
+
+    .term-tag-alert {
+      color: #f59e0b;
+    }
+
+    .term-tag-esg {
+      color: #60a5fa;
+    }
+
+    .term-tag-err {
+      color: #ef4444;
+    }
+
+    /* ── Scientific Pedigree (light) ── */
+    .science-card-light {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 2.25rem;
+    }
+
+    .science-label-light {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: #6b7280;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .science-text-light {
+      font-size: .88rem;
+      color: #374151;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .siic-badge-light {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    @media(max-width:768px) {
+
+      .science-card-light~div,
+      div:has(> .science-card-light) {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* ── Finale CTA grid bg ── */
+    .finale-grid-bg-light {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div id="site-header"></div>
+
+  <!-- ══════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════ -->
+  <section class="tech-hero" aria-label="Technology platform hero">
+    <div class="tech-hero-glow" aria-hidden="true"></div>
+    <div class="tech-hero-grid" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="tech-hero-inner">
+
+        <div class="tech-hero-copy">
+          <div class="tech-hero-tag">
+            <span class="tech-tag-dot" aria-hidden="true"></span>
+            Everything is a Resource. Naturally
+          </div>
+
+          <h1 class="tech-hero-h1">
+            One Integrated Platform.<br>
+            <span class="tech-accent">From Bin to Boardroom.</span>
+          </h1>
+
+          <p class="tech-hero-sub">
+            Smart bins that sense. A platform that alerts, analyzes, and closes the circular economy loop — turning
+            every collection into <strong>audit-ready ESG data</strong>, automatically.
+          </p>
+
+          <div class="tech-hero-ctas">
+            <a href="contact.html" class="tech-btn-primary">Book a Live Demo</a>
+            <a href="#the-signal" class="tech-btn-ghost">See How It Works ↓</a>
+          </div>
+
+          <div class="tech-proof-strip">
+            <div class="tech-proof-item">
+              <span class="tech-proof-val">85%</span>
+              <span class="tech-proof-label">Overflows Prevented</span>
+            </div>
+            <div class="tech-proof-sep" aria-hidden="true"></div>
+            <div class="tech-proof-item">
+              <span class="tech-proof-val">₹0</span>
+              <span class="tech-proof-label">Upfront Capital</span>
+            </div>
+            <div class="tech-proof-sep" aria-hidden="true"></div>
+            <div class="tech-proof-item">
+              <span class="tech-proof-val">15</span>
+              <span class="tech-proof-label">ESG KPIs Auto-Generated</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ECOSYSTEM ANIMATION: Living Circular Economy Platform -->
+        <div class="tech-ecosystem-viz" id="ecosystem-viz" aria-label="Aarush circular economy platform in motion">
+
+          <!-- ESG compliance floating labels (HTML, positioned over SVG) -->
+          <span class="esg-label" data-label="SDG">SDG</span>
+          <span class="esg-label" data-label="Net Zero">Net Zero</span>
+          <span class="esg-label" data-label="BRSR">BRSR</span>
+          <span class="esg-label" data-label="EPR">EPR</span>
+          <span class="esg-label" data-label="Paris Agreement">Paris Agreement</span>
+
+          <svg viewBox="0 0 620 580" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <filter id="eco-glow-green" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="eco-glow-gold" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="eco-glow-cyan" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <clipPath id="bin-body-clip">
+                <rect x="299" y="452" width="22" height="30" />
+              </clipPath>
+              <!-- Orbit path for revolving AARUSH text (r=54 around 310,265) -->
+              <path id="aarush-orbit-path" d="M 256,265 a 54,54 0 1 1 108,0 a 54,54 0 1 1 -108,0" fill="none" />
+            </defs>
+
+            <!-- ══ INVISIBLE MOTION PATHS (no stroke — pulse rails only) ══ -->
+            <!-- Step 2: Bin → AARUSH -->
+            <path id="path-bin-aarush" d="M 310,440 C 310,390 310,340 310,290" fill="none" stroke="none" />
+            <!-- Step 3: AARUSH → Truck -->
+            <path id="path-aarush-truck" d="M 288,290 C 258,325 222,355 198,378" fill="none" stroke="none" />
+            <!-- Step 4: Truck → SmartBin -->
+            <path id="path-truck-bin" d="M 200,408 C 228,430 262,448 295,455" fill="none" stroke="none" />
+            <!-- Step 5: SmartBin → Segregation -->
+            <path id="path-bin-seg" d="M 285,460 C 220,435 145,370 108,278" fill="none" stroke="none" />
+            <!-- Step 6: Segregation → AARUSH -->
+            <path id="path-seg-aarush" d="M 112,265 C 165,265 220,265 268,265" fill="none" stroke="none" />
+            <!-- Step 6 cont: RE-Source(252,212) → Recycle(355,110) -->
+            <path id="path-resrc-recycle" d="M 262,200 C 290,165 322,138 345,118" fill="none" stroke="none" />
+            <!-- Step 6 cont: RE-Source(252,212) → Reuse(265,110) -->
+            <path id="path-resrc-reuse" d="M 256,195 C 258,168 261,145 264,120" fill="none" stroke="none" />
+            <!-- Step 7: Recycle(355,110) → AARUSH(310,265) -->
+            <path id="path-recycle-aarush" d="M 348,125 C 338,168 325,215 315,252" fill="none" stroke="none" />
+            <!-- Step 7: Reuse(265,110) → AARUSH(310,265) -->
+            <path id="path-reuse-aarush" d="M 270,125 C 280,168 292,215 305,252" fill="none" stroke="none" />
+            <!-- Step 7A: Recycle(355,110) → Industries(530,265) -->
+            <path id="path-recycle-ind" d="M 370,118 C 415,158 468,205 515,250" fill="none" stroke="none" />
+            <!-- Step 7A: Reuse(265,110) → Industries(530,265) -->
+            <path id="path-reuse-ind" d="M 280,118 C 348,158 432,208 512,250" fill="none" stroke="none" />
+            <!-- Step 8: Industries → ESG -->
+            <path id="path-ind-esg" d="M 510,278 C 475,290 430,305 380,315" fill="none" stroke="none" />
+            <!-- Step 9: Industries(530,265) → Consumer(435,392) -->
+            <path id="path-ind-consumer" d="M 518,280 C 495,315 468,352 442,380" fill="none" stroke="none" />
+            <!-- Step 9A: Consumer(435,392) → SmartBin(310,465) -->
+            <path id="path-consumer-bin" d="M 420,405 C 392,425 358,445 320,458" fill="none" stroke="none" />
+
+            <!-- ══ ANIMATED PARTICLES ══ -->
+            <circle id="p-bin-aarush" r="5.5" fill="#22c55e" opacity="0" filter="url(#eco-glow-green)" />
+            <circle id="p-aarush-truck" r="5" fill="#f59e0b" opacity="0" filter="url(#eco-glow-gold)" />
+            <circle id="p-truck-bin" r="5" fill="#f59e0b" opacity="0" />
+            <circle id="p-bin-seg" r="4.5" fill="#94a3b8" opacity="0" />
+            <circle id="p-seg-aarush" r="5" fill="#38bdf8" opacity="0" filter="url(#eco-glow-cyan)" />
+            <circle id="p-resrc-recycle" r="4.5" fill="#4ade80" opacity="0" />
+            <circle id="p-resrc-reuse" r="4.5" fill="#34d399" opacity="0" />
+            <circle id="p-recycle-aarush" r="4.5" fill="#4ade80" opacity="0" />
+            <circle id="p-reuse-aarush" r="4.5" fill="#34d399" opacity="0" />
+            <circle id="p-recycle-ind" r="4.5" fill="#818cf8" opacity="0" />
+            <circle id="p-reuse-ind" r="4.5" fill="#818cf8" opacity="0" />
+            <circle id="p-ind-esg" r="5" fill="#06b6d4" opacity="0" filter="url(#eco-glow-cyan)" />
+            <circle id="p-ind-consumer" r="4.5" fill="#a78bfa" opacity="0" />
+            <circle id="p-consumer-bin" r="5" fill="#a78bfa" opacity="0" />
+
+            <!-- ══ NODES ══ -->
+
+            <!-- SMARTBIN — 6 o'clock (310, 465) -->
+            <g class="eco-node" id="node-bin">
+              <circle id="bin-pulse-ring" cx="310" cy="465" r="52" fill="none" stroke="#22c55e" stroke-width="1"
+                opacity="0.12" />
+              <circle cx="310" cy="465" r="36" fill="rgba(22,163,74,0.14)" stroke="#22c55e" stroke-width="1.8" />
+              <!-- Bin icon -->
+              <rect x="296" y="448" width="28" height="4" rx="2" fill="none" stroke="#22c55e" stroke-width="1.2"
+                opacity="0.7" />
+              <rect x="299" y="452" width="22" height="26" rx="2" fill="rgba(0,0,0,0.25)" stroke="#22c55e"
+                stroke-width="1.2" opacity="0.65" />
+              <rect id="bin-fill" x="300" y="478" width="20" height="0" rx="1" fill="#22c55e" opacity="0.85"
+                clip-path="url(#bin-body-clip)" />
+              <line x1="307" y1="453" x2="307" y2="477" stroke="#22c55e" stroke-width="0.8" opacity="0.3" />
+              <line x1="315" y1="453" x2="315" y2="477" stroke="#22c55e" stroke-width="0.8" opacity="0.3" />
+              <!-- Ultrasonic sensor (continuously measuring fill level) -->
+              <line id="us-beam1" x1="305" y1="453" x2="305" y2="458" stroke="#22c55e" stroke-width="0.6" opacity="0.3"
+                stroke-dasharray="1 2" />
+              <line id="us-beam2" x1="310" y1="453" x2="310" y2="458" stroke="#22c55e" stroke-width="0.6" opacity="0.3"
+                stroke-dasharray="1 2" />
+              <line id="us-beam3" x1="315" y1="453" x2="315" y2="458" stroke="#22c55e" stroke-width="0.6" opacity="0.3"
+                stroke-dasharray="1 2" />
+              <rect x="303" y="450" width="14" height="3" rx="1" fill="none" stroke="#22c55e" stroke-width="0.7"
+                opacity="0.5" />
+              <!-- WiFi signal on bin -->
+              <path id="wifi-arc1" d="M 304,442 Q 310,436 316,442" fill="none" stroke="#22c55e" stroke-width="1"
+                opacity="0.35" stroke-linecap="round" />
+              <path id="wifi-arc2" d="M 307,444 Q 310,440 313,444" fill="none" stroke="#22c55e" stroke-width="1"
+                opacity="0.35" stroke-linecap="round" />
+              <circle id="wifi-dot" cx="310" cy="446" r="1" fill="#22c55e" opacity="0.4" />
+              <text x="310" y="535" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11"
+                fill="rgba(255,255,255,0.88)" font-weight="600">SmartBin</text>
+              <text x="310" y="547" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5"
+                fill="rgba(255,255,255,0.42)">IoT · Solar · AI Sensor</text>
+            </g>
+
+            <!-- AARUSH HUB — centre (310, 265) -->
+            <g class="eco-node" id="node-platform">
+              <!-- AARUSH glow ring — activated on every ESG pulse arrival -->
+              <circle id="aarush-glow-ring" cx="310" cy="265" r="68" fill="none" stroke="rgba(22,163,74,0)"
+                stroke-width="5" opacity="0" filter="url(#eco-glow-green)" />
+              <!-- Revolving orbit text — two copies offset 50% for full coverage -->
+              <g id="revolving-text-group">
+                <text font-family="'DM Sans',sans-serif" font-size="5.5" fill="#ea580c" font-weight="700"
+                  letter-spacing="0.3">
+                  <textPath href="#aarush-orbit-path" startOffset="0%">Adaptive Actionable Resource &amp; Urban Systems
+                    Hub</textPath>
+                </text>
+                <text font-family="'DM Sans',sans-serif" font-size="5.5" fill="#ea580c" font-weight="700"
+                  letter-spacing="0.3">
+                  <textPath href="#aarush-orbit-path" startOffset="50%">Adaptive Actionable Resource &amp; Urban Systems
+                    Hub</textPath>
+                </text>
+              </g>
+              <!-- Main fill -->
+              <circle cx="310" cy="265" r="44" fill="rgba(22,163,74,0.17)" stroke="#22c55e" stroke-width="2" />
+              <!-- Inner ring -->
+              <circle cx="310" cy="265" r="38" fill="rgba(22,163,74,0.06)" stroke="rgba(34,197,94,0.35)"
+                stroke-width="1" />
+              <!-- AARUSH label -->
+              <text x="310" y="268" text-anchor="middle" font-family="DM Serif Display,Georgia,serif" font-size="16"
+                fill="#ea580c" font-weight="bold" letter-spacing="2.5">AARUSH</text>
+            </g>
+
+            <!-- RE-SOURCE — 10–11 o'clock (252, 212) overlapping AARUSH edge — starts HIDDEN -->
+            <g class="eco-node" id="node-resrc" style="opacity:0;pointer-events:none;">
+              <circle id="resrc-pulse" cx="252" cy="212" r="34" fill="none" stroke="#fbbf24" stroke-width="1"
+                opacity="0.08" />
+              <circle id="resrc-ring" cx="252" cy="212" r="22" fill="rgba(251,191,36,0.08)"
+                stroke="rgba(251,191,36,0.32)" stroke-width="1.5" />
+              <!-- Circular arrows icon -->
+              <path d="M 244,210 A 8,8 0 1 1 260,210" stroke="rgba(251,191,36,0.65)" stroke-width="1.5" fill="none"
+                stroke-linecap="round" />
+              <polyline points="260,207 260,210 263,210" stroke="rgba(251,191,36,0.65)" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              <path d="M 260,214 A 8,8 0 1 1 244,214" stroke="rgba(251,191,36,0.65)" stroke-width="1.5" fill="none"
+                stroke-linecap="round" />
+              <polyline points="244,217 244,214 241,214" stroke="rgba(251,191,36,0.65)" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              <text x="252" y="244" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9"
+                fill="rgba(251,191,36,0.65)" letter-spacing="0.5">RE-Source</text>
+              <text x="252" y="256" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5"
+                fill="rgba(255,255,255,0.30)">Resource Recovery</text>
+            </g>
+
+            <!-- ESG PLATFORM — 4–5 o'clock (362, 318) overlapping AARUSH edge — starts HIDDEN -->
+            <g class="eco-node" id="node-esg" style="opacity:0;pointer-events:none;">
+              <circle cx="362" cy="318" r="32" fill="none" stroke="rgba(6,182,212,0.12)" stroke-width="1" />
+              <circle cx="362" cy="318" r="24" fill="rgba(6,182,212,0.14)" stroke="#06b6d4" stroke-width="1.8" />
+              <!-- Bar chart icon -->
+              <rect x="351" y="314" width="5" height="9" rx="1" fill="#06b6d4" opacity="0.85" />
+              <rect x="359" y="309" width="5" height="14" rx="1" fill="#06b6d4" opacity="0.85" />
+              <rect x="367" y="305" width="5" height="18" rx="1" fill="#06b6d4" opacity="0.85" />
+              <!-- Trend line -->
+              <polyline points="353,313 361,308 369,304" fill="none" stroke="#22c55e" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <text x="362" y="358" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                fill="rgba(255,255,255,0.88)" font-weight="600">ESG Platform</text>
+              <text x="362" y="370" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5"
+                fill="rgba(255,255,255,0.42)">15 KPIs · BRSR · SDG</text>
+            </g>
+
+            <!-- COLLECTION TRUCK — 7–8 o'clock (185, 392) -->
+            <g class="eco-node" id="node-truck">
+              <circle cx="185" cy="392" r="36" fill="none" stroke="rgba(245,158,11,0.12)" stroke-width="1" />
+              <circle cx="185" cy="392" r="26" fill="rgba(245,158,11,0.12)" stroke="#f59e0b" stroke-width="1.8" />
+              <!-- Truck icon -->
+              <rect x="168" y="384" width="18" height="12" rx="1.5" fill="none" stroke="#f59e0b" stroke-width="1.3"
+                opacity="0.85" />
+              <path d="M 186,386 L 198,386 L 200,391 L 200,396 L 186,396 Z" fill="none" stroke="#f59e0b"
+                stroke-width="1.3" opacity="0.85" />
+              <circle cx="174" cy="398" r="2.5" fill="#f59e0b" opacity="0.75" />
+              <circle cx="194" cy="398" r="2.5" fill="#f59e0b" opacity="0.75" />
+              <text x="185" y="438" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                fill="rgba(255,255,255,0.88)" font-weight="600">Collection Truck</text>
+              <text x="185" y="450" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5"
+                fill="rgba(255,255,255,0.42)">Route Optimised</text>
+            </g>
+
+            <!-- SEGREGATION CENTRE — 9 o'clock (80, 265) -->
+            <g class="eco-node" id="node-mrc">
+              <circle cx="80" cy="265" r="36" fill="none" stroke="rgba(148,163,184,0.12)" stroke-width="1" />
+              <circle cx="80" cy="265" r="26" fill="rgba(148,163,184,0.10)" stroke="rgba(148,163,184,0.65)"
+                stroke-width="1.8" />
+              <!-- Sorting/segregation icon -->
+              <rect x="65" y="258" width="30" height="16" rx="1.5" fill="none" stroke="rgba(148,163,184,0.8)"
+                stroke-width="1.3" />
+              <rect x="71" y="253" width="18" height="6" rx="1" fill="none" stroke="rgba(148,163,184,0.8)"
+                stroke-width="1.2" />
+              <line x1="74" y1="250" x2="74" y2="253" stroke="rgba(148,163,184,0.7)" stroke-width="1.8"
+                stroke-linecap="round" />
+              <line x1="80" y1="250" x2="80" y2="253" stroke="rgba(148,163,184,0.7)" stroke-width="1.8"
+                stroke-linecap="round" />
+              <line x1="86" y1="250" x2="86" y2="253" stroke="rgba(148,163,184,0.7)" stroke-width="1.8"
+                stroke-linecap="round" />
+              <rect x="74" y="262" width="12" height="12" rx="0.5" fill="none" stroke="rgba(148,163,184,0.6)"
+                stroke-width="1" />
+              <text x="80" y="312" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5"
+                fill="rgba(255,255,255,0.88)" font-weight="600">Segregation</text>
+              <text x="80" y="324" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5"
+                fill="rgba(255,255,255,0.42)">Centre · Sorting</text>
+            </g>
+
+            <!-- INDUSTRIES — 3 o'clock (530, 265) -->
+            <g class="eco-node" id="node-industries">
+              <circle cx="530" cy="265" r="36" fill="none" stroke="rgba(129,140,248,0.12)" stroke-width="1" />
+              <circle cx="530" cy="265" r="26" fill="rgba(129,140,248,0.12)" stroke="#818cf8" stroke-width="1.8" />
+              <!-- Hammer & pick (industries) icon -->
+              <circle cx="530" cy="265" r="9" fill="none" stroke="#818cf8" stroke-width="1.5" opacity="0.85" />
+              <circle cx="530" cy="265" r="4" fill="#818cf8" opacity="0.45" />
+              <line x1="530" y1="253" x2="530" y2="250" stroke="#818cf8" stroke-width="3" stroke-linecap="round"
+                opacity="0.7" />
+              <line x1="530" y1="278" x2="530" y2="281" stroke="#818cf8" stroke-width="3" stroke-linecap="round"
+                opacity="0.7" />
+              <line x1="518" y1="265" x2="515" y2="265" stroke="#818cf8" stroke-width="3" stroke-linecap="round"
+                opacity="0.7" />
+              <line x1="542" y1="265" x2="545" y2="265" stroke="#818cf8" stroke-width="3" stroke-linecap="round"
+                opacity="0.7" />
+              <line x1="522" y1="257" x2="519" y2="254" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+                opacity="0.7" />
+              <line x1="538" y1="273" x2="541" y2="276" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+                opacity="0.7" />
+              <line x1="522" y1="273" x2="519" y2="276" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+                opacity="0.7" />
+              <line x1="538" y1="257" x2="541" y2="254" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"
+                opacity="0.7" />
+              <text x="530" y="311" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10"
+                fill="rgba(255,255,255,0.88)" font-weight="600">Industries</text>
+              <text x="530" y="323" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5"
+                fill="rgba(255,255,255,0.42)">Manufacturers · Buyers</text>
+            </g>
+
+            <!-- RECYCLE — between 12–1 o'clock (355, 110) -->
+            <g class="eco-node" id="node-recycle">
+              <circle cx="355" cy="110" r="22" fill="rgba(74,222,128,0.12)" stroke="#4ade80" stroke-width="1.5" />
+              <!-- Recycle arrows -->
+              <path d="M 355,100 L 361,100 L 358,94 Z" fill="#4ade80" opacity="0.8" />
+              <path d="M 348,110 A 8,8 0 0 1 362,102" fill="none" stroke="#4ade80" stroke-width="1.5" opacity="0.8"
+                stroke-linecap="round" />
+              <path d="M 349,117 L 355,122 L 361,117" fill="none" stroke="#4ade80" stroke-width="1.5" opacity="0.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M 355,122 A 8,8 0 0 1 348,110" fill="none" stroke="#4ade80" stroke-width="1.5" opacity="0.8"
+                stroke-linecap="round" />
+              <text x="355" y="142" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5"
+                fill="rgba(255,255,255,0.88)" font-weight="600">Recycle</text>
+            </g>
+
+            <!-- REUSE — between 11–12 o'clock (265, 110) -->
+            <g class="eco-node" id="node-reuse">
+              <circle cx="265" cy="110" r="22" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.5" />
+              <!-- Reuse loop arrows -->
+              <path d="M 257,108 A 8,8 0 0 1 273,108" fill="none" stroke="#34d399" stroke-width="1.5" opacity="0.8"
+                stroke-linecap="round" />
+              <polyline points="257,105 257,108 254,108" stroke="#34d399" stroke-width="1.5" opacity="0.8"
+                stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              <path d="M 273,112 A 8,8 0 0 1 257,112" fill="none" stroke="#34d399" stroke-width="1.5" opacity="0.8"
+                stroke-linecap="round" />
+              <polyline points="273,109 273,112 276,112" stroke="#34d399" stroke-width="1.5" opacity="0.8"
+                stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              <text x="265" y="142" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5"
+                fill="rgba(255,255,255,0.88)" font-weight="600">Reuse</text>
+            </g>
+
+            <!-- CONSUMER — 4–5 o'clock (435, 392) symmetrical to Truck -->
+            <g class="eco-node" id="node-consumer">
+              <circle cx="435" cy="392" r="22" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="1.5" />
+              <!-- Person silhouette icon -->
+              <circle cx="435" cy="384" r="5" fill="none" stroke="#a78bfa" stroke-width="1.3" opacity="0.85" />
+              <path d="M 426,400 Q 435,394 444,400" fill="none" stroke="#a78bfa" stroke-width="1.3" opacity="0.85"
+                stroke-linecap="round" />
+              <text x="435" y="424" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5"
+                fill="rgba(255,255,255,0.88)" font-weight="600">Consumer</text>
+              <text x="435" y="435" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8"
+                fill="rgba(255,255,255,0.42)">Citizens · Communities</text>
+            </g>
+
+          </svg>
+        </div><!-- end .tech-ecosystem-viz -->
+
+      </div>
+    </div>
+
+    <div class="scroll-indicator" onclick="document.querySelector('.how-section').scrollIntoView({behavior:'smooth'})"
+      role="button" tabindex="0" aria-label="Scroll down">
+      <span></span>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       HOW IT WORKS — TIMELINE
+  ══════════════════════════════════════════════════ -->
+  <section class="section how-section scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">From Day 1 to ESG Report</h2>
+        <p class="section-subtitle">Installation to insights — the complete journey</p>
+      </div>
+
+      <div class="how-timeline">
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-step-circle how-step-circle--green">
+              <span class="how-step-emoji"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5">
+                  <path d="M1 3h15v13H1z" />
+                  <path d="M16 8h4l3 3v5h-7V8z" />
+                  <circle cx="5.5" cy="18.5" r="2.5" />
+                  <circle cx="18.5" cy="18.5" r="2.5" />
+                </svg></span>
+              <div class="how-step-num how-step-num--green">1</div>
+            </div>
+            <h3 class="how-step-title">Deploy</h3>
+            <p class="how-step-desc">We install and activate smart bins at your site. No civil work. No capex.</p>
+          </div>
+
+          <div class="how-step">
+            <div class="how-step-circle how-step-circle--blue">
+              <span class="how-step-emoji"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5">
+                  <path d="M4.9 19.1A14 14 0 0 1 3 12c0-3.87 1.57-7.38 4.1-9.9" />
+                  <path d="M7.8 16.2A9 9 0 0 1 6 12c0-2.49 1.01-4.74 2.64-6.36" />
+                  <path d="M10.7 13.3A4 4 0 0 1 10 12c0-1.1.45-2.1 1.17-2.83" />
+                  <circle cx="12" cy="12" r="1" />
+                </svg></span>
+              <div class="how-step-num how-step-num--blue">2</div>
+            </div>
+            <h3 class="how-step-title">Monitor</h3>
+            <p class="how-step-desc">Sensors track fill levels and send real-time data every 15 minutes.</p>
+          </div>
+
+          <div class="how-step">
+            <div class="how-step-circle how-step-circle--purple">
+              <span class="how-step-emoji"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 8V4m0 0L9 7m3-3 3 3" />
+                  <rect x="4" y="8" width="16" height="12" rx="2" />
+                  <circle cx="9" cy="13" r="1" />
+                  <circle cx="15" cy="13" r="1" />
+                  <path d="M9 17h6" />
+                </svg></span>
+              <div class="how-step-num how-step-num--purple">3</div>
+            </div>
+            <h3 class="how-step-title">Optimise</h3>
+            <p class="how-step-desc">Alerts drive collection scheduling, cutting wasted trips by up to 40%.</p>
+          </div>
+
+          <div class="how-step">
+            <div class="how-step-circle how-step-circle--amber">
+              <span class="how-step-emoji"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 3v18h18" />
+                  <path d="M7 16l4-8 4 4 4-6" />
+                </svg></span>
+              <div class="how-step-num how-step-num--amber">4</div>
+            </div>
+            <h3 class="how-step-title">Report</h3>
+            <p class="how-step-desc">Access structured waste data to support ESG, BRSR, and compliance reporting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       COMPONENT EXPLORER — iBin Hardware
+  ══════════════════════════════════════════════════ -->
+  <section class="component-explorer scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Inside the iBin</h2>
+        <p class="section-subtitle">Each module eliminates a failure point. Not a feature — a fix.</p>
+      </div>
+
+      <div class="explorer-layout">
+        <div class="component-list">
+          <div class="component-item active" data-component="solar">
+            <span class="component-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="5" />
+                <path
+                  d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+              </svg></span>
+            <h3 class="component-name">Solar Power</h3>
+            <p class="component-brief">Eliminates power grid dependency entirely. 30-day autonomy.</p>
+          </div>
+          <div class="component-item" data-component="sensors">
+            <span class="component-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M4.9 19.1A14 14 0 0 1 3 12c0-3.87 1.57-7.38 4.1-9.9" />
+                <path d="M7.8 16.2A9 9 0 0 1 6 12c0-2.49 1.01-4.74 2.64-6.36" />
+                <path d="M10.7 13.3A4 4 0 0 1 10 12c0-1.1.45-2.1 1.17-2.83" />
+                <circle cx="12" cy="12" r="1" />
+              </svg></span>
+            <h3 class="component-name">IoT Sensors</h3>
+            <p class="component-brief">Eliminates manual inspection rounds. Always watching.</p>
+          </div>
+          <div class="component-item" data-component="lock">
+            <span class="component-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg></span>
+            <h3 class="component-name">Smart Lock</h3>
+            <p class="component-brief">Eliminates overflow risk. Auto-locks when threshold crossed.</p>
+          </div>
+          <div class="component-item" data-component="structure">
+            <span class="component-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg></span>
+            <h3 class="component-name">Build Quality</h3>
+            <p class="component-brief">Eliminates maintenance surprises. IP65, steel, ground-anchored.</p>
+          </div>
+        </div>
+
+        <div class="visual-display">
+          <div class="component-visual active" data-visual="solar">
+            <img src="assets/images/ibin.webp" alt="iBin solar-powered smart bin — 20W monocrystalline panel"
+              class="visual-image" loading="lazy">
+            <div class="spec-badges-row">
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg></span></span>
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="1" y="6" width="18" height="12" rx="2" />
+                    <path d="M23 10v4" />
+                    <path d="M5 10v4" />
+                  </svg></span></span>
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5" />
+                    <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12" />
+                    <path d="M14 16l3 3-3 3" />
+                    <path d="m8.293 13.596-4.6-7.965a1.78 1.78 0 0 1 .662-2.428 1.83 1.83 0 0 1 .908-.238h3.992" />
+                    <path d="m7 6 3-3 1 3" />
+                    <path d="m15.709 13.596 4.6-7.965a1.78 1.78 0 0 0-.662-2.428A1.83 1.83 0 0 0 18.74 3h-3.4" />
+                    <path d="m17 6-3-3-1 3" />
+                  </svg></span></span>
+            </div>
+          </div>
+          <div class="component-visual" data-visual="sensors">
+            <img src="assets/images/ibin.webp" alt="IoT ultrasonic sensor array on iBin smart bin" class="visual-image"
+              loading="lazy">
+            <div class="spec-badges-row">
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 3v18h18" />
+                    <path d="M7 16l4-8 4 4 4-6" />
+                  </svg></span></span>
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10" />
+                    <path
+                      d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                  </svg></span></span>
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="13" r="8" />
+                    <path d="M12 9v4l2 2" />
+                    <path d="M5 3L2 6m20-3l-3 3M10 2h4" />
+                  </svg></span></span>
+            </div>
+          </div>
+          <div class="component-visual" data-visual="lock">
+            <img src="assets/images/bhoomi-patra.webp" alt="Smart lock mechanism on Bhoomi Patra bin"
+              class="visual-image" loading="lazy">
+            <div class="spec-badges-row">
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="5" y="2" width="14" height="20" rx="2" />
+                    <path d="M12 18h.01" />
+                  </svg></span></span>
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg></span></span>
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="13" r="8" />
+                    <path d="M12 9v4l2 2" />
+                    <path d="M5 3L2 6m20-3l-3 3M10 2h4" />
+                  </svg></span></span>
+            </div>
+          </div>
+          <div class="component-visual" data-visual="structure">
+            <img src="assets/images/bhoomi-patra.webp" alt="Bhoomi Patra heritage-compatible smart bin"
+              class="visual-image" loading="lazy">
+            <div class="spec-badges-row">
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg></span></span>
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+                  </svg></span></span>
+              <span class="spec-badge"><span class="spec-badge-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path
+                      d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                  </svg></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:2rem;">
+        <a href="contact.html?subject=datasheet" class="btn btn-outline"
+          style="display:inline-flex;align-items:center;gap:.5rem;border:1px solid #16a34a;color:#16a34a;padding:.65rem 1.5rem;border-radius:8px;font-size:.9rem;font-weight:600;text-decoration:none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            style="vertical-align:middle">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <path d="M14 2v6h6m-4 5H8m8 4H8m2-8H8" />
+          </svg> Request Data Sheet
+        </a>
+        <p style="font-size:.8rem;color:#9ca3af;margin-top:.5rem;">Full technical specifications shared on request.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       3D FLIP CARDS — Specs
+  ══════════════════════════════════════════════════ -->
+  <section class="section flip-section scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Technical Specifications</h2>
+        <p class="section-subtitle">Hover the cards to reveal what's inside</p>
+      </div>
+
+      <div class="feature-3d-grid">
+        <div class="card-3d">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <span class="card-3d-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="5" />
+                  <path
+                    d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg></span>
+              <h3 class="card-3d-title">Solar Power</h3>
+              <p>Completely off-grid operation</p>
+            </div>
+            <div class="card-3d-back">
+              <h4 class="card-3d-back-title">Specifications</h4>
+              <ul class="card-3d-specs">
+                <li><span>Panel</span><strong>20W Mono</strong></li>
+                <li><span>Battery</span><strong>12V 20Ah</strong></li>
+                <li><span>Backup</span><strong>30 Days</strong></li>
+                <li><span>Efficiency</span><strong>&gt;18%</strong></li>
+                <li><span>Lifespan</span><strong>25 Years</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-3d">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <span class="card-3d-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5">
+                  <path d="M4.9 19.1A14 14 0 0 1 3 12c0-3.87 1.57-7.38 4.1-9.9" />
+                  <path d="M7.8 16.2A9 9 0 0 1 6 12c0-2.49 1.01-4.74 2.64-6.36" />
+                  <path d="M10.7 13.3A4 4 0 0 1 10 12c0-1.1.45-2.1 1.17-2.83" />
+                  <circle cx="12" cy="12" r="1" />
+                </svg></span>
+              <h3 class="card-3d-title">IoT Sensors</h3>
+              <p>Real-time monitoring &amp; alerts</p>
+            </div>
+            <div class="card-3d-back">
+              <h4 class="card-3d-back-title">Specifications</h4>
+              <ul class="card-3d-specs">
+                <li><span>Type</span><strong>Ultrasonic</strong></li>
+                <li><span>Range</span><strong>0.3m – 2m</strong></li>
+                <li><span>Accuracy</span><strong>±1cm</strong></li>
+                <li><span>Update</span><strong>Configurable</strong></li>
+                <li><span>Protocol</span><strong>MQTT / TLS</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-3d">
+          <div class="card-3d-inner">
+            <div class="card-3d-front">
+              <span class="card-3d-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5">
+                  <path d="M2 20h.01M7 20v-4m5 4v-8m5 8v-12m5 12V4" />
+                </svg></span>
+              <h3 class="card-3d-title">Connectivity</h3>
+              <p>Always online, everywhere</p>
+            </div>
+            <div class="card-3d-back">
+              <h4 class="card-3d-back-title">Specifications</h4>
+              <ul class="card-3d-specs">
+                <li><span>Network</span><strong>4G/LTE</strong></li>
+                <li><span>Fallback</span><strong>2G/3G</strong></li>
+                <li><span>Protocol</span><strong>MQTT TLS</strong></li>
+                <li><span>Latency</span><strong>&lt;60s</strong></li>
+                <li><span>Uptime</span><strong>99.2%</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       THE SIGNAL — 4 STEPS
+  ══════════════════════════════════════════════════ -->
+  <section class="signal-section scroll-reveal" id="the-signal">
+    <div class="container">
+      <div class="signal-header">
+        <span class="signal-kicker">The Moment That Matters</span>
+        <h2 class="signal-h2">Bin crosses 80%.<br>This is what happens next.</h2>
+        <p class="signal-sub">Four steps from sensor trigger to driver alert. No human in the loop. No delay.</p>
+      </div>
+
+      <div class="signal-timeline">
+        <div class="signal-step">
+          <span class="signal-step-second">Step 1</span>
+          <div class="signal-step-bubble"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M4.9 19.1A14 14 0 0 1 3 12c0-3.87 1.57-7.38 4.1-9.9" />
+              <path d="M7.8 16.2A9 9 0 0 1 6 12c0-2.49 1.01-4.74 2.64-6.36" />
+              <path d="M10.7 13.3A4 4 0 0 1 10 12c0-1.1.45-2.1 1.17-2.83" />
+              <circle cx="12" cy="12" r="1" />
+            </svg></div>
+          <div class="signal-step-title">Sensor Fires</div>
+          <p class="signal-step-desc">Ultrasonic fill sensor reads 80%+ threshold. Triggers encrypted data packet.</p>
+        </div>
+        <div class="signal-step">
+          <span class="signal-step-second">Step 2</span>
+          <div class="signal-step-bubble"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+            </svg></div>
+          <div class="signal-step-title">Cloud Receives</div>
+          <p class="signal-step-desc">MQTT over TLS. Packet reaches secure cloud. Bin ID, location, fill level logged
+            instantly.</p>
+        </div>
+        <div class="signal-step">
+          <span class="signal-step-second">Step 3</span>
+          <div class="signal-step-bubble"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z" />
+              <path d="M8 2v16m8-12v16" />
+            </svg></div>
+          <div class="signal-step-title">Route Recalculated</div>
+          <p class="signal-step-desc">Platform re-optimises the nearest vehicle's route, inserting this bin with
+            priority.</p>
+        </div>
+        <div class="signal-step">
+          <span class="signal-step-second">Step 4</span>
+          <div class="signal-step-bubble"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <path d="M12 18h.01" />
+            </svg></div>
+          <div class="signal-step-title">Driver Alerted</div>
+          <p class="signal-step-desc">Push notification with turn-by-turn. Worker is en route before the bin can
+            overflow.</p>
+        </div>
+        <div class="signal-runner" aria-hidden="true"></div>
+      </div>
+
+      <div class="signal-outcome">
+        <span class="signal-outcome-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <path d="M22 4L12 14.01l-3-3" />
+          </svg></span>
+        <p class="signal-outcome-text">
+          <strong>Result: overflow prevented.</strong> The event is logged, timestamped, and added to your ESG report
+          automatically. No spreadsheet. No manual entry. No guesswork.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ARCHITECTURE FLOW
+  ══════════════════════════════════════════════════ -->
+  <section class="section hotspot-section scroll-reveal"
+    style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">From Bin to Board Report</h2>
+        <p class="section-subtitle">The complete data journey — hardware to ESG output</p>
+      </div>
+
+      <div class="arch-flow">
+        <div class="arch-node">
+          <div class="arch-node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg></div>
+          <div class="arch-node-title">Smart Bin</div>
+          <div class="arch-node-sub">Fill sensor · Solar power · Smart lock</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M4.9 19.1A14 14 0 0 1 3 12c0-3.87 1.57-7.38 4.1-9.9" />
+              <path d="M7.8 16.2A9 9 0 0 1 6 12c0-2.49 1.01-4.74 2.64-6.36" />
+              <path d="M10.7 13.3A4 4 0 0 1 10 12c0-1.1.45-2.1 1.17-2.83" />
+              <circle cx="12" cy="12" r="1" />
+            </svg></div>
+          <div class="arch-node-title">Indigenous IoT Module</div>
+          <div class="arch-node-sub">4G/LTE · MQTT · On-device storage</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+            </svg></div>
+          <div class="arch-node-title">Secure Cloud</div>
+          <div class="arch-node-sub">Encrypted data ingestion &amp; storage</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8m-4-4v4" />
+            </svg></div>
+          <div class="arch-node-title">Central Dashboard</div>
+          <div class="arch-node-sub">Web &amp; mobile · Alerts · Multi-site</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node arch-node--highlight">
+          <div class="arch-node-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" />
+            </svg></div>
+          <div class="arch-node-title">ESG Reports</div>
+          <div class="arch-node-sub">Waste data for BRSR &amp; sustainability reporting</div>
+        </div>
+      </div>
+
+      <div class="spec-grid">
+        <div class="spec-card spec-card--yellow">
+          <div class="spec-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </div>
+          <div class="spec-card-title">20W Solar Panel</div>
+          <div class="spec-card-sub">Monocrystalline · Works in low light</div>
+        </div>
+        <div class="spec-card spec-card--green">
+          <div class="spec-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="1" y="6" width="18" height="12" rx="2" />
+              <path d="M23 10v4" />
+              <path d="M5 10v4" />
+            </svg>
+          </div>
+          <div class="spec-card-title">12V LiFePO4 Battery</div>
+          <div class="spec-card-sub">30+ days backup · 2000+ cycles</div>
+        </div>
+        <div class="spec-card spec-card--blue">
+          <div class="spec-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4.9 19.1A14 14 0 0 1 3 12c0-3.87 1.57-7.38 4.1-9.9" />
+              <path d="M7.8 16.2A9 9 0 0 1 6 12c0-2.49 1.01-4.74 2.64-6.36" />
+              <path d="M10.7 13.3A4 4 0 0 1 10 12c0-1.1.45-2.1 1.17-2.83" />
+              <circle cx="12" cy="12" r="1" />
+            </svg>
+          </div>
+          <div class="spec-card-title">Ultrasonic Fill Sensor</div>
+          <div class="spec-card-sub">±1cm accuracy · Configurable intervals</div>
+        </div>
+        <div class="spec-card spec-card--violet">
+          <div class="spec-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </div>
+          <div class="spec-card-title">Smart Lock</div>
+          <div class="spec-card-sub">Remote control · Auto-lock at threshold</div>
+        </div>
+        <div class="spec-card spec-card--orange">
+          <div class="spec-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 20h.01M7 20v-4m5 4v-8m5 8v-12m5 12V4" />
+            </svg>
+          </div>
+          <div class="spec-card-title">Indigenous IoT Module</div>
+          <div class="spec-card-sub">4G/LTE + 2G/3G fallback · MQTT TLS</div>
+        </div>
+        <div class="spec-card spec-card--cyan">
+          <div class="spec-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+            </svg>
+          </div>
+          <div class="spec-card-title">Heavy-Duty Frame</div>
+          <div class="spec-card-sub">Steel construction · Ground anchoring</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SOFTWARE PLATFORM — Dashboard
+  ══════════════════════════════════════════════════ -->
+  <section id="software" class="section software-section" style="background:#ffffff;">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="badge badge-success">Software Platform</span>
+        <h2 class="software-title">One Screen. Every Bin. Every Zone.</h2>
+        <p class="software-sub">Not just monitoring — the command centre for your waste operations. Manage collections,
+          track fill levels, access ESG data, and get alerts before problems happen.</p>
+      </div>
+
+      <div class="dashboard-wrapper">
+        <div id="liveAlert" class="alert-toast" aria-live="polite">
+          <b class="alert-toast-label" id="alertText">Initialising system…</b>
+        </div>
+
+        <div class="dash-sidebar">
+          <div class="nav-item active"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 3v18h18" />
+                <path d="M7 16l4-8 4 4 4-6" />
+              </svg></span> Overview</div>
+          <div class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z" />
+                <path d="M8 2v16m8-12v16" />
+              </svg></span> Map View</div>
+          <div class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+              </svg></span> Bin Inventory</div>
+          <div class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M1 3h15v13H1z" />
+                <path d="M16 8h4l3 3v5h-7V8z" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+              </svg></span> Collections</div>
+          <div class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                <path d="M17 6h6v6" />
+              </svg></span> ESG Data</div>
+          <div class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg></span> Alerts</div>
+          <div class="nav-item"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+              </svg></span> Maintenance</div>
+          <div class="nav-item nav-item--bottom"><span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg></span> Settings</div>
+        </div>
+
+        <div class="dash-main">
+          <div>
+            <div class="mock-card mock-card--mb">
+              <div class="mock-title">Network Status</div>
+              <div class="mock-uptime-row">
+                <div class="mock-value" id="dashOnline">20</div>
+                <span class="mock-live-badge" id="dashStatusBadge">● BINS ONLINE</span>
+              </div>
+            </div>
+
+            <div class="mock-card mock-card--mb">
+              <div class="mock-title">Today's Overview</div>
+              <div class="mock-impact-grid">
+                <div class="mock-impact-cell">
+                  <div class="mock-impact-val" id="dashCollections">0</div>
+                  <div class="mock-impact-label">Collections</div>
+                </div>
+                <div class="mock-impact-cell">
+                  <div class="mock-impact-val" id="dashAlerts">0</div>
+                  <div class="mock-impact-label">Alerts</div>
+                </div>
+                <div class="mock-impact-cell">
+                  <div class="mock-impact-val" id="dashAvgFill">—</div>
+                  <div class="mock-impact-label">Avg Fill %</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mock-card">
+              <div class="mock-title">Fill Level Distribution</div>
+              <div id="fillChart" style="display:flex;align-items:flex-end;gap:3px;height:80px;padding-top:8px;">
+                <div id="fb0"
+                  style="flex:1;background:#16a34a;border-radius:3px 3px 0 0;height:5%;transition:height .6s;"></div>
+                <div id="fb1"
+                  style="flex:1;background:#22c55e;border-radius:3px 3px 0 0;height:5%;transition:height .6s;"></div>
+                <div id="fb2"
+                  style="flex:1;background:#86efac;border-radius:3px 3px 0 0;height:5%;transition:height .6s;"></div>
+                <div id="fb3"
+                  style="flex:1;background:#fbbf24;border-radius:3px 3px 0 0;height:5%;transition:height .6s;"></div>
+                <div id="fb4"
+                  style="flex:1;background:#ef4444;border-radius:3px 3px 0 0;height:5%;transition:height .6s;"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.55rem;color:#9ca3af;margin-top:4px;">
+                <span>0-20%</span><span>20-40%</span><span>40-60%</span><span>60-80%</span><span>80%+</span>
+              </div>
+            </div>
+
+            <div class="event-log" id="eventLog" aria-live="polite" aria-label="System event log">
+              <div class="log-line">&gt; System initialising…</div>
+            </div>
+            <p class="illustration-note">* Simulated data for demonstration. Actual platform interface may differ.</p>
+          </div>
+
+          <div class="mock-card mock-card--flex">
+            <div class="mock-title">Bin Locations — Pilot Network <span id="dashLastSync"
+                style="float:right;font-size:.55rem;font-weight:400;color:#9ca3af;">Last sync: now</span></div>
+            <div id="map" role="region" aria-label="Map showing smart bin deployment locations across pilot zones">
+            </div>
+            <div class="mock-map-footer">
+              <div>
+                <div class="mock-map-footer-label">Active Bins</div>
+                <div class="mock-map-footer-val" id="dashBinCount">20 Units</div>
+              </div>
+              <div>
+                <div class="mock-map-footer-label">Deployment</div>
+                <div class="mock-map-footer-val">3 Zones</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       COMPLETE SOFTWARE PLATFORM — Tabs
+  ══════════════════════════════════════════════════ -->
+  <section class="section platform-section scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Complete Software Platform</h2>
+        <p class="section-subtitle">Cloud-based system that powers everything</p>
+      </div>
+
+      <div class="platform-tabs-wrap">
+        <div class="platform-tabs-nav">
+          <button class="platform-tab active" data-platform="dashboard"><svg width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:middle">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8m-4-4v4" />
+            </svg> Web Dashboard</button>
+          <button class="platform-tab" data-platform="mobile"><svg width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:middle">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <path d="M12 18h.01" />
+            </svg> Mobile Apps</button>
+          <button class="platform-tab" data-platform="api"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" style="vertical-align:middle">
+              <path d="M12 22v-5" />
+              <path d="M9 8V2m6 6V2" />
+              <path d="M18 8v5a6 6 0 0 1-12 0V8z" />
+            </svg> API &amp; Integration</button>
+        </div>
+
+        <div class="platform-content active" data-content="dashboard">
+          <div class="platform-content-grid">
+            <div>
+              <h3 class="platform-content-title">Centralized Control</h3>
+              <div class="platform-features">
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--green"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z" />
+                      <path d="M8 2v16m8-12v16" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">Real-Time Map View</h4>
+                    <p class="platform-feature-desc">Live status of every bin with color-coded fill levels</p>
+                  </div>
+                </div>
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--green"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">Smart Alerts</h4>
+                    <p class="platform-feature-desc">Automated notifications via SMS, email &amp; push when bins need
+                      attention</p>
+                  </div>
+                </div>
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--green"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                      <path d="M17 6h6v6" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">Analytics &amp; ESG Reports</h4>
+                    <p class="platform-feature-desc">Trend analysis and automated waste data reports — no manual logging
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="platform-preview-card">
+              <div class="platform-preview-inner">
+                <div class="platform-preview-bg"></div>
+                <div class="platform-preview-content">
+                  <div class="platform-preview-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5">
+                      <rect x="2" y="3" width="20" height="14" rx="2" />
+                      <path d="M8 21h8m-4-4v4" />
+                    </svg></div>
+                  <div class="platform-preview-title">Multi-tenant Dashboard</div>
+                  <div class="platform-preview-sub">Role-based access control</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="platform-content" data-content="mobile">
+          <div class="platform-content-grid platform-content-grid--reverse">
+            <div class="platform-preview-card">
+              <div class="platform-preview-inner platform-preview-inner--purple">
+                <div class="platform-preview-bg"></div>
+                <div class="platform-preview-content">
+                  <div class="platform-preview-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="1.5">
+                      <rect x="5" y="2" width="14" height="20" rx="2" />
+                      <path d="M12 18h.01" />
+                    </svg></div>
+                  <div class="platform-preview-title">iOS &amp; Android Apps</div>
+                  <div class="platform-preview-sub">Offline-capable field apps</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="platform-content-title">Field Operations</h3>
+              <div class="platform-features">
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--purple"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">Turn-by-Turn Navigation</h4>
+                    <p class="platform-feature-desc">Optimized routes with real-time traffic &amp; live bin updates</p>
+                  </div>
+                </div>
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--purple"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <path d="M22 4L12 14.01l-3-3" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">Task Management</h4>
+                    <p class="platform-feature-desc">Collection checklist, photo documentation, issue reporting</p>
+                  </div>
+                </div>
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--purple"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M1 1l22 22" />
+                      <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55" />
+                      <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39" />
+                      <path d="M10.71 5.05A16 16 0 0 1 22.56 9" />
+                      <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88" />
+                      <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                      <path d="M12 20h.01" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">Offline Mode</h4>
+                    <p class="platform-feature-desc">Works without internet, syncs when connection returns</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="platform-content" data-content="api">
+          <div class="platform-content-grid">
+            <div>
+              <h3 class="platform-content-title">Developer Friendly</h3>
+              <div class="platform-features">
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--amber"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M12 22v-5" />
+                      <path d="M9 8V2m6 6V2" />
+                      <path d="M18 8v5a6 6 0 0 1-12 0V8z" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">REST API</h4>
+                    <p class="platform-feature-desc">Complete OpenAPI spec with webhooks &amp; real-time data access</p>
+                  </div>
+                </div>
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--amber"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="4" y="2" width="16" height="20" rx="2" />
+                      <path d="M9 22v-4h6v4M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">ERP Integration</h4>
+                    <p class="platform-feature-desc">Pre-built connectors for SAP, Oracle, Dynamics, ServiceNow</p>
+                  </div>
+                </div>
+                <div class="platform-feature">
+                  <div class="platform-feature-icon platform-feature-icon--amber"><svg width="20" height="20"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M3 3v18h18" />
+                      <path d="M7 16l4-8 4 4 4-6" />
+                    </svg></div>
+                  <div>
+                    <h4 class="platform-feature-title">ESG Platforms</h4>
+                    <p class="platform-feature-desc">Direct export to Envizi, Workiva, Measurabl, custom dashboards</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="api-code-card">
+              <div class="api-code-comment">// Fetch bin status</div>
+              <div class="api-code-line"><span class="api-method">GET</span> /api/v1/bins/:id</div>
+              <div class="api-code-divider"></div>
+              <div class="api-code-comment">Response:</div>
+              <div class="api-code-body">
+                <div class="api-brace">{</div>
+                <div class="api-code-indent">
+                  <div><span class="api-key">"fill_level"</span>: <span class="api-num">67</span>,</div>
+                  <div><span class="api-key">"battery"</span>: <span class="api-num">85</span>,</div>
+                  <div><span class="api-key">"status"</span>: <span class="api-str">"online"</span>,</div>
+                  <div><span class="api-key">"location"</span>: { ... }</div>
+                </div>
+                <div class="api-brace">}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ESG — 15 KPI TRACKING
+  ══════════════════════════════════════════════════ -->
+  <section id="kpi-section" class="section section--kpi-gradient">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="badge badge-success">India's First · Bin-Level ESG Analytics</span>
+        <h2 class="section-heading-top">The Only Platform That Turns Every Bin Into an ESG Data Point</h2>
+        <p class="text-secondary section-subhead">
+          No other waste management system in India generates structured ESG data at the individual bin level. Aarush
+          captures every collection event, fill level, and segregation entry — automatically.
+          <strong>15 live ESG KPIs. BRSR-compatible exports. Reports your board can trust. Zero spreadsheets.</strong>
+          Your ESG team gets the data. We do the work.
+        </p>
+      </div>
+
+      <div class="grid grid-3 gap-2 mt-4">
+        <div class="card card--centered card--green-border">
+          <div class="kpi-group-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M7 20h10" />
+              <path d="M10 20c5.5-2.5.8-6.4 3-10" />
+              <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" />
+              <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" />
+            </svg></div>
+          <div class="kpi-group-num">5</div>
+          <h4 class="kpi-group-title">Carbon &amp; Climate KPIs</h4>
+          <p class="text-secondary kpi-group-desc">GHG avoided (estimated), methane reduction, solar self-sufficiency,
+            scope 3 waste emissions data</p>
+        </div>
+        <div class="card card--centered card--green-border">
+          <div class="kpi-group-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5" />
+              <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12" />
+              <path d="M14 16l3 3-3 3" />
+              <path d="m8.293 13.596-4.6-7.965a1.78 1.78 0 0 1 .662-2.428 1.83 1.83 0 0 1 .908-.238h3.992" />
+              <path d="m7 6 3-3 1 3" />
+              <path d="m15.709 13.596 4.6-7.965a1.78 1.78 0 0 0-.662-2.428A1.83 1.83 0 0 0 18.74 3h-3.4" />
+              <path d="m17 6-3-3-1 3" />
+            </svg></div>
+          <div class="kpi-group-num">5</div>
+          <h4 class="kpi-group-title">Waste &amp; Resource KPIs</h4>
+          <p class="text-secondary kpi-group-desc">Landfill diversion, recyclable capture, waste composition, collection
+            efficiency, EPR enablement</p>
+        </div>
+        <div class="card card--centered card--green-border">
+          <div class="kpi-group-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M3 3v18h18" />
+              <path d="M7 16l4-8 4 4 4-6" />
+            </svg></div>
+          <div class="kpi-group-num">5</div>
+          <h4 class="kpi-group-title">Operational KPIs</h4>
+          <p class="text-secondary kpi-group-desc">Cost savings, urban land efficiency, worker safety index, system
+            uptime, public hygiene score</p>
+        </div>
+      </div>
+
+      <div class="kpi-cta-box mt-4">
+        <p class="kpi-cta-copy">
+          <strong class="kpi-cta-highlight">Why this matters:</strong> It turns cleanliness from an assumption into
+          trackable, reportable data your board can act on.
+        </p>
+        <a href="esg-analytics.html" class="btn btn-primary">Explore ESG Data Tracking →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       CHAIN OF CUSTODY — DATA LIFECYCLE
+  ══════════════════════════════════════════════════ -->
+  <section class="section scroll-reveal" style="background:#f8fafc;">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge"
+          style="background:rgba(22,163,74,.08);color:#16a34a;border:1px solid rgba(22,163,74,.2);border-radius:999px;padding:.3rem 1rem;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Data
+          Lifecycle</span>
+        <h2 class="section-title">Chain of Custody — From Sensor to Ledger</h2>
+        <p class="section-subtitle">Every data point is signed, timestamped, and mapped to BRSR categories —
+          automatically</p>
+      </div>
+
+      <div class="custody-pipeline-light">
+        <div class="custody-step-light">
+          <span class="custody-bubble-light"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M4.9 19.1A14 14 0 0 1 3 12c0-3.87 1.57-7.38 4.1-9.9" />
+              <path d="M7.8 16.2A9 9 0 0 1 6 12c0-2.49 1.01-4.74 2.64-6.36" />
+              <path d="M10.7 13.3A4 4 0 0 1 10 12c0-1.1.45-2.1 1.17-2.83" />
+              <circle cx="12" cy="12" r="1" />
+            </svg><span class="custody-num-light">1</span></span>
+          <div class="custody-title-light">Sensor Detection</div>
+          <p class="custody-desc-light">Ultrasonic array fires. Topographic fill profile captured with ±1cm precision.
+            Timestamp generated at edge.</p>
+          <span class="custody-tag-light">PRECISION EVENT LOG</span>
+        </div>
+        <div class="custody-step-light">
+          <span class="custody-bubble-light"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg><span class="custody-num-light">2</span></span>
+          <div class="custody-title-light">Edge Timestamping</div>
+          <p class="custody-desc-light">Indigenous module signs the packet. Device ID, GPS, fill %, battery, signal
+            strength — encrypted via MQTT/TLS.</p>
+          <span class="custody-tag-light">SOVEREIGN MODULE</span>
+        </div>
+        <div class="custody-step-light">
+          <span class="custody-bubble-light"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+            </svg><span class="custody-num-light">3</span></span>
+          <div class="custody-title-light">Cloud ESG Engine</div>
+          <p class="custody-desc-light">Data mapped to BRSR Category 3. GHG avoidance estimated. KPIs computed. 15 live
+            metrics updated in real time.</p>
+          <span class="custody-tag-light">BRSR-MAPPED</span>
+        </div>
+        <div class="custody-step-light">
+          <span class="custody-bubble-light"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" />
+            </svg><span class="custody-num-light">4</span></span>
+          <div class="custody-title-light">Ledger Entry</div>
+          <p class="custody-desc-light">Audit-ready record pushed to enterprise dashboard. ESG report generated. No
+            manual entry. No spreadsheet.</p>
+          <span class="custody-tag-light">AUDIT-READY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       RE-SOURCE
+  ══════════════════════════════════════════════════ -->
+  <section class="section scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge" style="background:#f0fdf4;color:#15803d;border:1px solid #86efac;">India's First · In
+          Development</span>
+        <h2 class="section-title">RE-Source — India's First Circular Resource Network</h2>
+        <p class="section-subtitle">Where the bin stops being a dead end and starts being an asset</p>
+      </div>
+      <div class="rs-preview-grid">
+        <div class="rs-preview-copy">
+          <p>Aarush bins already capture and segregate secondary materials — dry recyclables, organics, and more.
+            RE-Source, India's first platform of its kind, takes this further: connecting verified secondary material
+            streams to buyers, recyclers, and circular economy operators through a structured trading and recovery
+            network.</p>
+          <p style="margin-top:1rem;">No other smart bin ecosystem in India includes a resource recovery layer.
+            Organisations that deploy Aarush infrastructure now get early access to RE-Source when it launches.
+            <strong>The bin that collects waste becomes the entry point to a circular economy — automatically.</strong>
+          </p>
+          <a href="resource.html"
+            style="display:inline-flex;align-items:center;gap:.4rem;margin-top:1.5rem;font-size:.9rem;font-weight:600;color:#16a34a;text-decoration:none;">Learn
+            about RE-Source →</a>
+        </div>
+        <div>
+          <div
+            style="border:1px solid #d1fae5;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem;background:#f0fdf4;display:flex;align-items:center;gap:1rem;">
+            <span style="font-size:1.3rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+              </svg></span>
+            <div style="flex:1"><strong style="font-size:.88rem;">Smart Bins</strong><br><span
+                style="font-size:.78rem;color:#6b7280;">Solar-powered · IoT-enabled collection</span></div>
+            <span
+              style="font-size:.7rem;background:#16a34a;color:#fff;padding:2px 10px;border-radius:999px;white-space:nowrap;">Deployed</span>
+          </div>
+          <div
+            style="border:1px solid #d1fae5;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem;background:#f0fdf4;display:flex;align-items:center;gap:1rem;">
+            <span style="font-size:1.3rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <path d="M8 21h8m-4-4v4" />
+              </svg></span>
+            <div style="flex:1"><strong style="font-size:.88rem;">Waste Intelligence</strong><br><span
+                style="font-size:.78rem;color:#6b7280;">Monitoring &amp; ESG data tracking</span></div>
+            <span
+              style="font-size:.7rem;background:#16a34a;color:#fff;padding:2px 10px;border-radius:999px;white-space:nowrap;">Active</span>
+          </div>
+          <div
+            style="border:1px solid #fde68a;border-radius:12px;padding:1rem 1.25rem;background:#fffbeb;display:flex;align-items:center;gap:1rem;">
+            <span style="font-size:1.3rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5" />
+                <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12" />
+                <path d="M14 16l3 3-3 3" />
+                <path d="m8.293 13.596-4.6-7.965a1.78 1.78 0 0 1 .662-2.428 1.83 1.83 0 0 1 .908-.238h3.992" />
+                <path d="m7 6 3-3 1 3" />
+                <path d="m15.709 13.596 4.6-7.965a1.78 1.78 0 0 0-.662-2.428A1.83 1.83 0 0 0 18.74 3h-3.4" />
+                <path d="m17 6-3-3-1 3" />
+              </svg></span>
+            <div style="flex:1"><strong style="font-size:.88rem;">RE-Source</strong><br><span
+                style="font-size:.78rem;color:#6b7280;">Circular resource trading network</span></div>
+            <span
+              style="font-size:.7rem;background:#d97706;color:#fff;padding:2px 10px;border-radius:999px;white-space:nowrap;">In
+              Development</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       PILOT PROOF — Real Numbers
+  ══════════════════════════════════════════════════ -->
+  <section class="proof-section scroll-reveal">
+    <div class="container">
+      <div class="proof-header">
+        <span class="proof-kicker">Proven, Not Promised</span>
+        <h2 class="proof-h2">3 Active Pilots. Real Data.</h2>
+        <p class="proof-sub">No simulations. No projections. These numbers come from live deployments.</p>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof-card">
+          <div class="proof-card-location">Delhi NCR</div>
+          <div class="proof-card-sector">Food Chain Facility</div>
+          <div class="proof-stat-row">
+            <div class="proof-stat">
+              <span class="proof-stat-label">Overflow incidents</span>
+              <span class="proof-stat-val">↓ 85%</span>
+            </div>
+            <div class="proof-stat">
+              <span class="proof-stat-label">Collection trips saved</span>
+              <span class="proof-stat-val">30%+</span>
+            </div>
+            <div class="proof-stat">
+              <span class="proof-stat-label">System uptime</span>
+              <span class="proof-stat-val">99.2%</span>
+            </div>
+          </div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-card-location">Faridabad</div>
+          <div class="proof-card-sector">Industrial Zone</div>
+          <div class="proof-stat-row">
+            <div class="proof-stat">
+              <span class="proof-stat-label">Overflow incidents</span>
+              <span class="proof-stat-val">↓ 80%</span>
+            </div>
+            <div class="proof-stat">
+              <span class="proof-stat-label">ESG KPIs tracked</span>
+              <span class="proof-stat-val">15 live</span>
+            </div>
+            <div class="proof-stat">
+              <span class="proof-stat-label">Monitoring</span>
+              <span class="proof-stat-val">24×7</span>
+            </div>
+          </div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-card-location">Kanpur</div>
+          <div class="proof-card-sector">MSME Cluster</div>
+          <div class="proof-stat-row">
+            <div class="proof-stat">
+              <span class="proof-stat-label">Overflow incidents</span>
+              <span class="proof-stat-val">↓ 82%</span>
+            </div>
+            <div class="proof-stat">
+              <span class="proof-stat-label">Upfront capital required</span>
+              <span class="proof-stat-val">₹0</span>
+            </div>
+            <div class="proof-stat">
+              <span class="proof-stat-label">Data export for ESG</span>
+              <span class="proof-stat-val">Daily</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-global-stats">
+        <div class="proof-gs-item">
+          <div class="proof-gs-val"><span>85</span>%</div>
+          <div class="proof-gs-label">Overflow reduction across pilots</div>
+        </div>
+        <div class="proof-gs-item">
+          <div class="proof-gs-val"><span>15</span></div>
+          <div class="proof-gs-label">Live ESG KPIs tracked</div>
+        </div>
+        <div class="proof-gs-item">
+          <div class="proof-gs-val">24<span>×7</span></div>
+          <div class="proof-gs-label">Continuous monitoring</div>
+        </div>
+        <div class="proof-gs-item">
+          <div class="proof-gs-val">₹<span>0</span></div>
+          <div class="proof-gs-label">Upfront capital required</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       BEFORE / AFTER COMPARISON
+  ══════════════════════════════════════════════════ -->
+  <section class="comparison-section scroll-reveal" style="background:#f6f9f7;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">The Difference Is Clear</h2>
+        <p class="section-subtitle">Drag the slider to compare traditional vs. smart waste management</p>
+      </div>
+
+      <div class="comparison-slider" id="comparisonSlider">
+        <div class="comparison-before">
+          <div class="comparison-side-content">
+            <div class="comparison-big-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M15 9l-6 6m0-6l6 6" />
+              </svg></div>
+            <h3>Traditional Bins</h3>
+            <ul class="comparison-list">
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M15 9l-6 6m0-6l6 6" />
+                </svg> No visibility until overflow happens</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M15 9l-6 6m0-6l6 6" />
+                </svg> Fixed collection schedules — efficient or not</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M15 9l-6 6m0-6l6 6" />
+                </svg> Zero waste data for sustainability reporting</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M15 9l-6 6m0-6l6 6" />
+                </svg> Manual processes, reactive management</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M15 9l-6 6m0-6l6 6" />
+                </svg> No way to track segregation or diversion</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="comparison-after" id="comparisonAfter">
+          <div class="comparison-side-content">
+            <div class="comparison-big-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="M22 4L12 14.01l-3-3" />
+              </svg></div>
+            <h3>Aarush Smart Bins</h3>
+            <ul class="comparison-list">
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="M22 4L12 14.01l-3-3" />
+                </svg> Fill-level data updated every 15 minutes per bin</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="M22 4L12 14.01l-3-3" />
+                </svg> Alert-driven collection — fewer wasted trips</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="M22 4L12 14.01l-3-3" />
+                </svg> Structured waste data for ESG &amp; BRSR reports</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="M22 4L12 14.01l-3-3" />
+                </svg> Centrally managed from one dashboard</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  style="vertical-align:middle">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="M22 4L12 14.01l-3-3" />
+                </svg> Segregation tracking for circular resource recovery</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="comparison-divider" id="comparisonDivider">
+          <div class="comparison-handle">⟷</div>
+        </div>
+
+        <div class="comparison-label before">Before</div>
+        <div class="comparison-label after">After</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ZERO CAPEX SPOTLIGHT
+  ══════════════════════════════════════════════════ -->
+  <section class="zerocapex-section scroll-reveal" aria-label="Zero CapEx deployment model">
+    <div class="container">
+      <div class="zerocapex-inner">
+
+        <div class="zerocapex-copy">
+          <span class="wf-stamp wf-stamp--green" style="margin-bottom:1.25rem;display:inline-block;">Global First ·
+            Zero-CapEx Infrastructure</span>
+          <h2 class="zerocapex-h2">You don't spend ₹1.<br><em>We invest. You transform.</em></h2>
+          <p class="zerocapex-p">Every other smart waste company asks you to buy bins, fund installation, manage
+            hardware, and budget for maintenance. Aarush inverts this entirely. We invest in the infrastructure. You get
+            the technology, the ESG data, and a cleaner facility — from day one.</p>
+          <ul class="zerocapex-list">
+            <li>No procurement process. No capex approval. No budget cycle to wait for.</li>
+            <li>We handle installation, connectivity, and all ongoing management.</li>
+            <li>You get full dashboard access, 15 live ESG KPIs, and 24×7 monitoring.</li>
+            <li>Operational immediately — not months after a PO is raised.</li>
+          </ul>
+          <a href="advertise.html" class="zerocapex-btn">See How Zero-CapEx Works →</a>
+        </div>
+
+        <div class="zerocapex-card">
+          <div class="zerocapex-big-val">₹0</div>
+          <div class="zerocapex-big-label">Upfront capital required from you</div>
+          <div class="zerocapex-big-sub">Full infrastructure-grade smart bins. Deployed. Managed. Monitored — by Aarush.
+          </div>
+          <div class="zerocapex-divider"></div>
+          <div class="zerocapex-trio">
+            <div>
+              <div class="zerocapex-trio-val">3</div>
+              <div class="zerocapex-trio-label">Active pilots<br>running now</div>
+            </div>
+            <div>
+              <div class="zerocapex-trio-val">85%</div>
+              <div class="zerocapex-trio-label">Overflow<br>reduction</div>
+            </div>
+            <div>
+              <div class="zerocapex-trio-val">Day 1</div>
+              <div class="zerocapex-trio-label">Operational<br>from</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ROI CALCULATOR
+  ══════════════════════════════════════════════════ -->
+  <section id="roi-calc" class="section scroll-reveal" style="background:#f0fdf4;">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge"
+          style="background:rgba(22,163,74,.08);color:#16a34a;border:1px solid rgba(22,163,74,.2);border-radius:999px;padding:.3rem 1rem;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Interactive
+          Module</span>
+        <h2 class="section-title">Impact &amp; ROI Calculator</h2>
+        <p class="section-subtitle">Project your environmental and financial value. Adjust inputs to see live outcome
+          estimates.</p>
+      </div>
+
+      <div class="calc-wrap-light">
+        <div class="calc-grid-light">
+          <div class="calc-inputs-light">
+            <h3>Your Inputs</h3>
+            <div class="calc-field-light">
+              <label>Number of Bins <span id="bins-val">20</span></label>
+              <input type="range" id="bins-range" min="5" max="200" value="20" step="5">
+            </div>
+            <div class="calc-field-light">
+              <label>Avg. Daily Collections / Bin <span id="coll-val">3</span></label>
+              <input type="range" id="coll-range" min="1" max="10" value="3" step="1">
+            </div>
+            <div class="calc-field-light">
+              <label>Industry Type</label>
+              <select class="calc-select-light" id="industry-select">
+                <option value="food">Food Chain / F&amp;B</option>
+                <option value="industrial">Industrial / Manufacturing</option>
+                <option value="msme">MSME Cluster</option>
+                <option value="mall">Retail / Mall</option>
+                <option value="campus">Campus / Institution</option>
+                <option value="ulb">Municipal / ULB</option>
+              </select>
+            </div>
+            <div class="calc-field-light">
+              <label>Trip Reduction (Route Optimization) <span id="trip-val">35%</span></label>
+              <input type="range" id="trip-range" min="20" max="50" value="35" step="5">
+            </div>
+          </div>
+          <div class="calc-outputs-light">
+            <h3>Projected Outcomes</h3>
+            <div class="calc-output-cards-light">
+              <div class="calc-output-card-light calc-output-card-light--green">
+                <div>
+                  <div class="coc-label-light">GHG Avoidance</div>
+                  <div class="coc-unit-light">kg CO₂e · monthly estimate</div>
+                </div>
+                <div class="coc-val-light coc-val-light--green" id="out-ghg">0</div>
+              </div>
+              <div class="calc-output-card-light calc-output-card-light--blue">
+                <div>
+                  <div class="coc-label-light">Operational Savings</div>
+                  <div class="coc-unit-light">₹ / month · labour + fuel estimate</div>
+                </div>
+                <div class="coc-val-light coc-val-light--blue" id="out-savings">0</div>
+              </div>
+              <div class="calc-output-card-light calc-output-card-light--amber">
+                <div>
+                  <div class="coc-label-light">Waste Diverted</div>
+                  <div class="coc-unit-light">% returned to circular economy</div>
+                </div>
+                <div class="coc-val-light coc-val-light--amber" id="out-diversion">0%</div>
+              </div>
+            </div>
+            <p class="calc-disclaimer-light">* Projections based on pilot data averages. Actual results vary by site
+              conditions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       MOAT COMPARISON
+  ══════════════════════════════════════════════════ -->
+  <section id="moat" class="section scroll-reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge"
+          style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:999px;padding:.3rem 1rem;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Competitive
+          Positioning</span>
+        <h2 class="section-title">Generic IoT vs. Global Best</h2>
+        <p class="section-subtitle">The technological delta between a commodity sensor and infrastructure-grade waste
+          intelligence.</p>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="moat-table-light">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>&#x274C; Generic IoT Bins</th>
+              <th>&#x2705; Aarush Platform</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fill Detection</td>
+              <td><span class="moat-x">&#x2717;</span> Single-point threshold trigger</td>
+              <td><span class="moat-check">&#x2713;</span> Topographic ultrasonic array ±1cm <span </tr>
+            <tr>
+              <td>Connectivity</td>
+              <td><span class="moat-x">&#x2717;</span> Wi-Fi only, no fallback</td>
+              <td><span class="moat-check">&#x2713;</span> Sovereign IoT Hub · 4G→3G→2G fallback</td>
+            </tr>
+            <tr>
+              <td>Data Integrity</td>
+              <td><span class="moat-x">&#x2717;</span> Simple alerts, no audit trail</td>
+              <td><span class="moat-check">&#x2713;</span> Edge-timestamped, audit-ready ledger <span
+                  class="moat-tag-light">INDIA FIRST</span></td>
+            </tr>
+            <tr>
+              <td>ESG Output</td>
+              <td><span class="moat-x">&#x2717;</span> None — manual reporting only</td>
+              <td><span class="moat-check">&#x2713;</span> 15 live KPIs · BRSR-mapped · Auto-generated <span
+                  class="moat-tag-light">INDIA FIRST</span></td>
+            </tr>
+            <tr>
+              <td>Power</td>
+              <td><span class="moat-x">&#x2717;</span> Grid-dependent, recurring cost</td>
+              <td><span class="moat-check">&#x2713;</span> 100% solar · 30–45 day battery backup</td>
+            </tr>
+            <tr>
+              <td>Circular Economy</td>
+              <td><span class="moat-x">&#x2717;</span> Waste collected, chain ends</td>
+              <td><span class="moat-check">&#x2713;</span> RE-Source circular recovery network <span
+                  class="moat-tag-light">INDIA FIRST</span></td>
+            </tr>
+            <tr>
+              <td>Capital Required</td>
+              <td><span class="moat-x">&#x2717;</span> Full hardware capex upfront</td>
+              <td><span class="moat-check">&#x2713;</span> ₹0 Zero-CapEx deployment model <span
+                  class="moat-tag-light">GLOBAL FIRST</span></td>
+            </tr>
+            <tr>
+              <td>OTA Updates</td>
+              <td><span class="moat-x">&#x2717;</span> Manual / physical access needed</td>
+              <td><span class="moat-check">&#x2713;</span> Encrypted OTA · Auto-rollback on failure</td>
+            </tr>
+            <tr>
+              <td>Worker App</td>
+              <td><span class="moat-x">&#x2717;</span> No field-force integration</td>
+              <td><span class="moat-check">&#x2713;</span> Turn-by-turn nav · Offline mode · Photo proof</td>
+            </tr>
+            <tr>
+              <td>Enterprise API</td>
+              <td><span class="moat-x">&#x2717;</span> Vendor-locked, no integration</td>
+              <td><span class="moat-check">&#x2713;</span> REST API · SAP/Oracle/Dynamics connectors</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       TECHNICAL FAQ
+  ══════════════════════════════════════════════════ -->
+  <section class="section scroll-reveal" style="background:#f8fafc;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Technical FAQs</h2>
+        <p class="section-subtitle">Common questions from facility managers and procurement teams</p>
+      </div>
+      <div class="faq-accordion" id="faqAccordion">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What happens when 4G connectivity fails?</button>
+          <div class="faq-a">
+            <p>The iBin stores data locally on-device and automatically syncs when connectivity is restored. The system
+              supports multi-carrier SIM fallback (4G → 3G → 2G). Critical alerts are queued and delivered once the
+              connection is re-established. No data is lost during offline periods.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How is firmware updated remotely?</button>
+          <div class="faq-a">
+            <p>Firmware updates are pushed over-the-air (OTA) via secure encrypted channels. Updates are scheduled
+              during low-usage windows and rolled back automatically if the device fails to boot post-update. No
+              physical access is required for routine firmware updates.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What is the warranty on the hardware?</button>
+          <div class="faq-a">
+            <p>Warranty and service terms vary by deployment model and are specified in the sales or service agreement.
+              Contact us for details applicable to your deployment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How is ESG data collected and reported?</button>
+          <div class="faq-a">
+            <p>Bin fill-level and collection events are automatically captured by the IoT system. Segregation data is
+              entered daily by operations teams. This data is aggregated in the dashboard and available as structured
+              reports. We provide the underlying waste data — your ESG team or consultant incorporates it into your BRSR
+              or sustainability reports. We do not certify ESG compliance.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What is the Zero-CapEx model?</button>
+          <div class="faq-a">
+            <p>Under the Zero-CapEx model, there is no upfront investment required from the facility owner. Aarush
+              handles procurement, installation, and ongoing management. Terms and conditions of this arrangement are
+              discussed during the partnership conversation. Contact us to explore feasibility for your facility.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       STAKEHOLDER VALUE
+  ══════════════════════════════════════════════════ -->
+  <section class="section"
+    style="background: var(--color-bg-secondary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="badge badge-success mb-3">The Platform That Serves All</span>
+        <h2>One Platform. Every Stakeholder Wins.</h2>
+        <p class="text-secondary" style="font-size: 1.15rem; max-width: 800px; margin: 1rem auto 0;">
+          Our technology stack was designed from day one to create simultaneous value at every layer—from the physical
+          bin to the cloud dashboard. Whether you govern a city, fund sustainability, buy media, or build a
+          portfolio—the platform delivers.
+        </p>
+      </div>
+      <div class="grid grid-2" style="gap: 2rem; margin-top: 3rem;">
+
+        <div class="stakeholder-card">
+          <div class="stakeholder-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 22h18" />
+              <path d="M2 10h20" />
+              <path d="M12 2L2 7h20L12 2z" />
+              <path d="M6 10v10" />
+              <path d="M10 10v10" />
+              <path d="M14 10v10" />
+              <path d="M18 10v10" />
+            </svg>
+          </div>
+          <h3 style="margin-bottom: 1rem;">For Government & Administrators</h3>
+          <p class="text-primary" style="font-weight: 600; margin-bottom: 1rem;">Swachh Bharat 2.0 Realized</p>
+          <p class="text-secondary mb-3">Eliminate the "Triad of Failure" (Overflow, Poor Design, Non-availability).
+            Deploy infrastructure-grade stainless steel bins that report their own fill levels 24/7. Achieve immediate,
+            visible cleanliness across cities, railways, and airports.</p>
+          <ul
+            style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;">
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> <strong>Zero-CapEx</strong>
+              procurement models available</li>
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> Centralized dashboard for
+              city-wide monitoring</li>
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> Built to withstand vandalism and
+              extreme weather</li>
+          </ul>
+        </div>
+
+        <div class="stakeholder-card">
+          <div class="stakeholder-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 3v18h18" />
+              <rect x="7" y="12" width="3" height="7" rx="0.5" />
+              <rect x="12" y="8" width="3" height="11" rx="0.5" />
+              <rect x="17" y="5" width="3" height="14" rx="0.5" />
+            </svg>
+          </div>
+          <h3 style="margin-bottom: 1rem;">For CSR & ESG Compliance</h3>
+          <p class="text-primary" style="font-weight: 600; margin-bottom: 1rem;">Audit-Ready Environmental Data</p>
+          <p class="text-secondary mb-3">Stop relying on estimated spreadsheets. Our bins automatically calculate 15
+            live ESG KPIs—from carbon diversion and methane reduction to land efficiency. Fund a deployment through CSR
+            and get continuous, verifiable impact reports.</p>
+          <ul
+            style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;">
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> Perfect for BRSR compliance
+              reporting</li>
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> Tangible, visible brand impact in
+              public spaces</li>
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> Real-time public health and
+              worker safety metrics</li>
+          </ul>
+        </div>
+
+        <div class="stakeholder-card">
+          <div class="stakeholder-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="6" />
+              <circle cx="12" cy="12" r="2" />
+              <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+            </svg>
+          </div>
+          <h3 style="margin-bottom: 1rem;">For Advertising Agencies</h3>
+          <p class="text-primary" style="font-weight: 600; margin-bottom: 1rem;">Premium Green DOOH Placements</p>
+          <p class="text-secondary mb-3">Place your clients' brands on premium, high-tech infrastructure in India's
+            highest-footfall zones (Malls, Airports, Tech Parks). Align brands with sustainability while achieving
+            massive urban reach.</p>
+          <ul
+            style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;">
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> High-dwell time contextual
+              advertising</li>
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> Unmatched brand credibility
+              (Green halo effect)</li>
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> Revenue sharing opportunities for
+              premise owners</li>
+          </ul>
+        </div>
+
+        <div class="stakeholder-card">
+          <div class="stakeholder-icon">📈</div>
+          <h3 style="margin-bottom: 1rem;">For Investors & Partners</h3>
+          <p class="text-primary" style="font-weight: 600; margin-bottom: 1rem;">A ₹14,500+ Cr Untapped Monopoly</p>
+          <p class="text-secondary mb-3">We are establishing the category of 'Active Waste Infrastructure' in India.
+            Backed by patented tech, we offer a highly scalable business model with proven unit economics and deeply
+            entrenched enterprise lock-in.</p>
+          <ul
+            style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;">
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> 4 distinct revenue streams
+              (Hardware, SaaS, Ads)</li>
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> Exclusive franchise territory
+              models</li>
+            <li><span style="color: var(--color-primary); font-weight: bold;">✓</span> De-risked execution via IIT
+              Kanpur incubation</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       FINALE CTA
+  ══════════════════════════════════════════════════ -->
+  <section class="bridge-cta-section" style="position:relative;overflow:hidden;">
+    <div class="finale-grid-bg-light" aria-hidden="true"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <p class="bridge-cta-eyebrow">The Vision</p>
+      <h2 class="bridge-cta-h2"
+        style="font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(2rem,4.5vw,3.5rem);max-width:720px;">
+        We are building the<br>
+        <em style="color:#22c55e;font-style:italic;">Operating System</em><br>
+        for a Cleaner India.
+      </h2>
+      <p class="bridge-cta-sub">Every bin a sensor. Every collection a data point. Every ESG report automatic. Every
+        waste stream returned to the circular economy. ₹0 upfront.</p>
+      <div class="bridge-cta-btns">
+        <a href="contact.html" class="bridge-btn-primary">Book a Live Demo →</a>
+        <a href="solutions.html" class="bridge-btn-ghost">Explore Solutions →</a>
+      </div>
+      <div style="margin-top:3.5rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;">3</div>
+          <div
+            style="font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem;">
+            Global Firsts</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;">3</div>
+          <div
+            style="font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem;">
+            Active Pilots</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;">85%</div>
+          <div
+            style="font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem;">
+            Overflow Reduction</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;">₹0</div>
+          <div
+            style="font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem;">
+            Upfront Capital</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  <script src="core.js?v=20260313-05" defer></script>
+  <script src="page-technology.js?v=20260317-03" defer></script>
+  <script>
+    /* ══════════════════════════════════════════════════
+       ECOSYSTEM ANIMATION — "The Living System" v3
+       Clock-layout, 9-step PDF sequence, comet trails
+    ══════════════════════════════════════════════════ */
+    (function () {
+      if (typeof gsap === 'undefined' || typeof MotionPathPlugin === 'undefined') return;
+      if (!document.getElementById('ecosystem-viz')) return;
+
+      gsap.registerPlugin(MotionPathPlugin);
+
+      /* ─── Reusable particle fire with comet trail ─── */
+      function fireParticle(id, pathSel, duration, color, onDone) {
+        var el = document.querySelector(id);
+        var pathEl = document.querySelector(pathSel);
+        if (!el || !pathEl) { if (onDone) onDone(); return; }
+        var svg = el.ownerSVGElement;
+
+        gsap.killTweensOf(el);
+        gsap.set(el, { fill: color, opacity: 0 });
+
+        /* Create 2 trailing clones for comet effect */
+        var trails = [];
+        for (var t = 0; t < 2; t++) {
+          var clone = el.cloneNode(true);
+          clone.removeAttribute('id');
+          clone.removeAttribute('filter');
+          clone.setAttribute('r', String(parseFloat(el.getAttribute('r')) * (t === 0 ? 0.6 : 0.35)));
+          svg.appendChild(clone);
+          trails.push(clone);
+        }
+
+        /* Main particle */
+        gsap.fromTo(el,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            motionPath: { path: pathEl, align: pathEl, autoRotate: false, alignOrigin: [0.5, 0.5] },
+            duration: duration,
+            ease: 'none',
+            onComplete: function () {
+              gsap.to(el, { opacity: 0, duration: 0.3 });
+              if (onDone) onDone();
+            }
+          }
+        );
+
+        /* Trailing particles */
+        trails.forEach(function (trail, i) {
+          var trailDelay = (i + 1) * 0.1;
+          var trailOpacity = i === 0 ? 0.45 : 0.18;
+          gsap.set(trail, { fill: color, opacity: 0 });
+          gsap.fromTo(trail,
+            { opacity: 0 },
+            {
+              opacity: trailOpacity,
+              motionPath: { path: pathEl, align: pathEl, autoRotate: false, alignOrigin: [0.5, 0.5] },
+              duration: duration,
+              delay: trailDelay,
+              ease: 'none',
+              onComplete: function () {
+                gsap.to(trail, { opacity: 0, duration: 0.2, onComplete: function () { trail.remove(); } });
+              }
+            }
+          );
+        });
+      }
+
+      /* ─── AARUSH glow — fires whenever ESG is triggered ─── */
+      function glowAarush() {
+        var ring = document.querySelector('#aarush-glow-ring');
+        if (!ring) return;
+        gsap.killTweensOf(ring);
+        gsap.fromTo(ring,
+          { opacity: 0, attr: { r: 68, stroke: 'rgba(34,197,94,0.0)' } },
+          {
+            opacity: 0.75,
+            attr: { r: 74, stroke: 'rgba(34,197,94,0.65)' },
+            duration: 0.35,
+            ease: 'power2.out',
+            yoyo: true,
+            repeat: 1,
+            onComplete: function () {
+              gsap.set(ring, { opacity: 0, attr: { r: 68 } });
+            }
+          }
+        );
+      }
+
+      /* ─── ESG Platform: appear gently ─── */
+      function showESG() {
+        var node = document.querySelector('#node-esg');
+        if (!node) return;
+        gsap.killTweensOf(node);
+        node.style.pointerEvents = 'auto';
+        gsap.to(node, { opacity: 1, duration: 0.6, ease: 'power2.out' });
+      }
+
+      /* ─── ESG Platform: fade and disappear slowly ─── */
+      function hideESG() {
+        var node = document.querySelector('#node-esg');
+        if (!node) return;
+        gsap.to(node, {
+          opacity: 0, duration: 1.2, delay: 1.8, ease: 'power2.in',
+          onComplete: function () { node.style.pointerEvents = 'none'; }
+        });
+      }
+
+      /* ─── RE-Source: appear when pulse arrives ─── */
+      function showResrc() {
+        gsap.to('#node-resrc', {
+          opacity: 1, duration: 0.7, ease: 'power2.out',
+          onStart: function () {
+            var el = document.querySelector('#node-resrc');
+            if (el) el.style.pointerEvents = 'auto';
+          }
+        });
+        gsap.to('#resrc-ring', { attr: { stroke: '#fbbf24' }, fill: 'rgba(251,191,36,0.28)', duration: 0.5 });
+        gsap.to('#resrc-pulse', { attr: { r: 38, opacity: 0.55 }, duration: 0.4, yoyo: true, repeat: 2 });
+      }
+
+      /* ─── RE-Source: fade out ─── */
+      function hideResrc() {
+        gsap.to('#node-resrc', {
+          opacity: 0, duration: 0.9, delay: 0.3, ease: 'power2.in',
+          onComplete: function () {
+            var el = document.querySelector('#node-resrc');
+            if (el) el.style.pointerEvents = 'none';
+            gsap.set('#resrc-ring', { attr: { stroke: 'rgba(251,191,36,0.32)' }, fill: 'rgba(251,191,36,0.08)' });
+            gsap.set('#resrc-pulse', { attr: { r: 34, opacity: 0.08 } });
+          }
+        });
+      }
+
+      /* ─── Entrance: nodes stagger in (skip hidden RE-Source and ESG) ─── */
+      gsap.from('.eco-node:not(#node-resrc):not(#node-esg)', {
+        scale: 0, opacity: 0, duration: 0.65,
+        stagger: 0.10, ease: 'back.out(1.4)',
+        delay: 0.4,
+        transformOrigin: 'center center'
+      });
+
+      /* ─── Ambient bin pulse ring ─── */
+      gsap.to('#bin-pulse-ring', {
+        attr: { r: 58 }, opacity: 0.35,
+        duration: 2.8, yoyo: true, repeat: -1, ease: 'sine.inOut'
+      });
+
+      /* ─── Ultrasonic sensor — continuous measurement beams ─── */
+      gsap.to(['#us-beam1', '#us-beam2', '#us-beam3'], {
+        opacity: 0.7, duration: 0.6, stagger: 0.15,
+        yoyo: true, repeat: -1, ease: 'sine.inOut'
+      });
+
+      /* ═══════════════════════════════════════════════
+         MASTER TIMELINE — 9-step PDF sequence, repeat forever
+      ═══════════════════════════════════════════════ */
+      var masterTl = gsap.timeline({ repeat: -1, repeatDelay: 2 });
+
+      masterTl
+
+        /* ── Step 1: SmartBin fills to ~80% (4s), WiFi triggers, continues to ~95% (1.5s) ── */
+        .to('#bin-fill', { attr: { y: 461, height: 17 }, duration: 4, ease: 'none' })
+        /* WiFi signal fires at 80% — data transmitted to AARUSH */
+        .to(['#wifi-arc1', '#wifi-arc2', '#wifi-dot'], {
+          opacity: 1, duration: 0.25, stagger: 0.1, yoyo: true, repeat: 5, ease: 'power1.inOut'
+        })
+        /* Bin continues filling slowly to ~95% while WiFi transmits */
+        .to('#bin-fill', { attr: { y: 459, height: 19 }, duration: 1.5, ease: 'none' }, '-=1.5')
+        .to('#bin-pulse-ring', { attr: { r: 60 }, opacity: 0.7, duration: 0.18, yoyo: true, repeat: 3 }, '-=0.2')
+        /* Reset WiFi arcs to idle after transmission */
+        .to(['#wifi-arc1', '#wifi-arc2', '#wifi-dot'], { opacity: 0.35, duration: 0.3 })
+
+        /* ── Step 2: Pulse 1 — Bin → AARUSH (bin stays full) ── */
+        .call(function () {
+          fireParticle('#p-bin-aarush', '#path-bin-aarush', 1.5, '#22c55e');
+        })
+
+        /* ── Step 3: Pulse 2 — AARUSH → Truck + ESG appears (bin stays full) ── */
+        .call(function () {
+          fireParticle('#p-aarush-truck', '#path-aarush-truck', 1.5, '#f59e0b');
+          showESG();
+          glowAarush();
+          hideESG();
+        }, null, '+=1.4')
+
+        /* ── Step 4: Pulse 3 — Truck → SmartBin. Bin evacuates when truck arrives ── */
+        .call(function () {
+          fireParticle('#p-truck-bin', '#path-truck-bin', 1.4, '#f59e0b', function () {
+            /* Truck reached the bin — evacuate */
+            gsap.to('#bin-fill', { attr: { y: 478, height: 0 }, duration: 0.6, ease: 'power2.in' });
+          });
+        }, null, '+=1.4')
+
+        /* ── Step 5: Pulse 4 — SmartBin → Segregation Centre ── */
+        .call(function () {
+          fireParticle('#p-bin-seg', '#path-bin-seg', 1.8, '#94a3b8');
+        }, null, '+=1.3')
+
+        /* ── Step 6: Pulse 5 — Segregation → AARUSH
+                On arrival: RE-Source + ESG appear.
+                Then fire pulse 6: RE-Source → Recycle & Reuse.
+                RE-Source fades when pulse 6 reaches destinations. ── */
+        .call(function () {
+          fireParticle('#p-seg-aarush', '#path-seg-aarush', 1.4, '#38bdf8', function () {
+            showResrc();
+            showESG();
+            glowAarush();
+            hideESG();
+            var doneCount = 0;
+            function on6done() { doneCount++; if (doneCount === 2) hideResrc(); }
+            gsap.delayedCall(0.5, function () {
+              fireParticle('#p-resrc-recycle', '#path-resrc-recycle', 1.3, '#4ade80', on6done);
+              fireParticle('#p-resrc-reuse', '#path-resrc-reuse', 1.5, '#34d399', on6done);
+            });
+          });
+        }, null, '+=1.6')
+
+        /* ── Step 7: Pulse 7 — Reuse+Recycle → AARUSH (ESG appears)
+                + Pulse 7A — Reuse+Recycle → Industries simultaneously
+                Wait for step 6 chain: seg(1.4) + delay(0.5) + resrc→reuse(1.5) = 3.4s → use 3.9s ── */
+        .call(function () {
+          fireParticle('#p-recycle-aarush', '#path-recycle-aarush', 1.3, '#4ade80');
+          fireParticle('#p-reuse-aarush', '#path-reuse-aarush', 1.5, '#34d399', function () {
+            showESG();
+            glowAarush();
+            hideESG();
+          });
+          fireParticle('#p-recycle-ind', '#path-recycle-ind', 1.5, '#818cf8');
+          fireParticle('#p-reuse-ind', '#path-reuse-ind', 1.4, '#818cf8');
+        }, null, '+=3.9')
+
+        /* ── Step 8: Pulse 8 — Industries → ESG Platform ── */
+        .call(function () {
+          fireParticle('#p-ind-esg', '#path-ind-esg', 1.3, '#06b6d4', function () {
+            showESG();
+            glowAarush();
+            hideESG();
+          });
+        }, null, '+=1.8')
+
+        /* ── Step 9: Pulse 9 — Industries → Consumer ── */
+        .call(function () {
+          fireParticle('#p-ind-consumer', '#path-ind-consumer', 1.3, '#a78bfa');
+        }, null, '+=1.5')
+
+        /* ── Step 9A: Pulse 9A — Consumer → SmartBin (separate step) ── */
+        .call(function () {
+          fireParticle('#p-consumer-bin', '#path-consumer-bin', 1.3, '#a78bfa');
+        }, null, '+=1.4')
+
+        /* ── Hold for last particle to complete before repeat ── */
+        .to({}, { duration: 3.5 });
+
+      /* ─── ESG floating compliance labels ─── */
+      var esgLabels = Array.from(document.querySelectorAll('.esg-label'));
+      if (esgLabels.length) {
+        function shuffleArr(arr) {
+          for (var i = arr.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+          }
+          return arr;
+        }
+        var queue = shuffleArr(esgLabels.slice());
+        var labelIdx = 0;
+        function showNextLabel() {
+          var label = queue[labelIdx % queue.length];
+          labelIdx++;
+          if (labelIdx % queue.length === 0) shuffleArr(queue);
+          gsap.fromTo(label,
+            { opacity: 0, y: 5 },
+            {
+              opacity: 1, y: 0, duration: 0.85, ease: 'power2.out',
+              onComplete: function () {
+                gsap.to(label, {
+                  opacity: 0, y: -4, duration: 0.8, delay: 2.4,
+                  onComplete: showNextLabel
+                });
+              }
+            }
+          );
+        }
+        gsap.delayedCall(1.5, showNextLabel);
+      }
+
+    })();
+  </script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-q').forEach(function (b) {
+          b.setAttribute('aria-expanded', 'false');
+          b.nextElementSibling.style.display = 'none';
+        });
+        if (!expanded) {
+          this.setAttribute('aria-expanded', 'true');
+          this.nextElementSibling.style.display = 'block';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

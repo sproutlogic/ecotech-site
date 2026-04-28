@@ -1,0 +1,63 @@
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-grid">
+            <section class="footer-brand-col" aria-label="Aarush Eco Tech">
+                <a href="index.html" class="logo footer-logo" aria-label="Aarush Eco Tech home">
+                    <img src="assets/images/logo.svg" alt="Aarush Eco Tech logo" class="logo-img footer-logo-img" width="48"
+                        height="48">
+                    <span class="logo-text">AARUSH <span class="highlight">ECO TECH</span></span>
+                </a>
+                <p class="footer-brand">
+                    Infrastructure-grade smart waste systems for high-footfall environments.
+                    Live ESG dashboards with zero-CapEx deployment options.
+                </p>
+                <a href="contact.html" class="footer-primary-cta">Book a Live Demo</a>
+                <p class="footer-trust-line">Recognized by startup and innovation ecosystem partners.</p>
+            </section>
+
+            <nav aria-label="Platform">
+                <h3 class="footer-title">Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="esg-analytics.html">ESG Analytics</a></li>
+                    <li><a href="advertise.html">Advertise</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-label="Company">
+                <h3 class="footer-title">Company</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="insights.html">Insights</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <section aria-label="Contact">
+                <h3 class="footer-title">Contact</h3>
+                <ul class="footer-contact-list">
+                    <li><span class="footer-contact-label">Email:</span> <span id="footer-email"></span></li>
+                    <li>SIIC IIT Kanpur, Uttar Pradesh, India</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2026 Aarush Eco Tech. All rights reserved.</p>
+            <nav class="footer-legal" aria-label="Legal and utility links">
+                <a href="contact.html">Privacy</a>
+                <a href="contact.html">Terms</a>
+                <a href="contact.html">Cookies</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Floating Contact CTA — hidden on contact pages via JS -->
+    <a class="floating-cta" id="floatingCta" href="contact.html" aria-label="Contact us">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Contact Us</span>
+    </a>
+</footer>
