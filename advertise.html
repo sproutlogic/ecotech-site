@@ -4068,6 +4068,11 @@
   slider.addEventListener('input', () => updateDaypart(true));
   updateDaypart(false);
 
+  // Ensure LED screen inner content is visible on all viewports
+  if (adContent) {
+    adContent.style.setProperty('display', 'flex', 'important');
+  }
+
   /* ══════════════════════════════
      ATTENTION HEATMAP CANVAS
   ══════════════════════════════ */
