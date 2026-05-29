@@ -155,7 +155,7 @@ function setActiveNavLink(scope) {
 
 function loadHeader() {
     var slot = document.getElementById('site-header');
-    var HEADER_CACHE_KEY = 'aet:header.fragment:v20260313-07';
+    var HEADER_CACHE_KEY = 'aet:header.fragment:v20260529';
 
     function hydrateHeader(scope) {
         setActiveNavLink(scope);
@@ -202,7 +202,7 @@ function loadHeader() {
         return;
     }
 
-    fetch('header.fragment?v=20260313-07', { cache: 'no-cache' })
+    fetch('header.fragment?v=20260529', { cache: 'no-cache' })
         .then(function (res) {
             if (!res.ok) throw new Error('Header fetch failed: ' + res.status);
             return res.text();

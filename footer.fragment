@@ -52,12 +52,5 @@
             </nav>
         </div>
     </div>
-
-    <!-- Floating Contact CTA — hidden on contact pages via JS -->
-    <a class="floating-cta" id="floatingCta" href="contact.html" aria-label="Contact us">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Contact Us</span>
-    </a>
+    <!-- Floating Contact CTA is injected by core.js injectFloatingCta() — not baked here, to avoid a duplicate when the footer fetch races the injector. -->
 </footer>
