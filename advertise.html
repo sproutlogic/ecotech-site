@@ -351,11 +351,130 @@
       .nav-sections {
         display: none;
       }
-    }
-
-    @media (max-width: 640px) {
       .nav-agencies {
         display: none;
+      }
+    }
+
+    /* ── Hamburger button (hidden on desktop) ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      padding: 6px;
+      background: transparent;
+      border: 1px solid var(--gold-line);
+      border-radius: 2px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.3s var(--ease), opacity 0.3s;
+      transform-origin: center;
+    }
+
+    .nav-hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 4px);
+    }
+
+    .nav-hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(4px, -4px);
+    }
+
+    /* ── Mobile nav panel ── */
+    .nav-mobile-panel {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 899;
+      padding-top: 5rem;
+      padding-bottom: 2rem;
+      background: rgba(14, 12, 16, 0.98);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--gold-line);
+      transform: translateY(-100%);
+      transition: transform 0.4s var(--ease-out);
+    }
+
+    .nav-mobile-panel.active {
+      transform: translateY(0);
+    }
+
+    .nav-mobile-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      padding: 0 clamp(1.5rem, 6vw, 3rem);
+    }
+
+    .nav-mobile-links li {
+      border-bottom: 1px solid var(--whisper);
+    }
+
+    .nav-mobile-links a {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ghost);
+      padding: 1.1rem 0;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+
+    .nav-mobile-links a:hover {
+      color: var(--gold);
+      padding-left: 0.5rem;
+    }
+
+    .nav-mobile-links .nav-mobile-cta {
+      color: var(--gold);
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Mobile overlay ── */
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 898;
+      background: rgba(8, 7, 10, 0.6);
+    }
+
+    @media (max-width: 900px) {
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .nav-mobile-panel {
+        display: block;
+      }
+
+      .nav-mobile-overlay {
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+
+      .nav-mobile-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
       }
     }
 
@@ -2705,9 +2824,27 @@
         <a class="nav-agencies" href="contact.html" style="background:var(--gold);color:var(--ink);">
           Get in touch
         </a>
+        <button class="nav-hamburger" id="advHamburger" onclick="toggleAdvMenu()"
+          aria-label="Open navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile nav panel (shown when hamburger is open) -->
+  <div class="nav-mobile-panel" id="advMobilePanel" aria-hidden="true">
+    <ul class="nav-mobile-links">
+      <li><a href="index.html" onclick="toggleAdvMenu()">Home</a></li>
+      <li><a href="technology.html" onclick="toggleAdvMenu()">Technology</a></li>
+      <li><a href="industries.html" onclick="toggleAdvMenu()">Solutions</a></li>
+      <li><a href="insights.html" onclick="toggleAdvMenu()">Insights</a></li>
+      <li><a href="about.html" onclick="toggleAdvMenu()">About</a></li>
+      <li><a href="agencies.html" onclick="toggleAdvMenu()">For Agencies</a></li>
+      <li><a href="contact.html" class="nav-mobile-cta" onclick="toggleAdvMenu()">Get in touch</a></li>
+    </ul>
+  </div>
+  <div class="nav-mobile-overlay" id="advOverlay" onclick="toggleAdvMenu()" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════
      ACT I — THE RECKONING
@@ -5145,6 +5282,21 @@
     { "@type": "PropertyValue", "name": "Share of Voice", "value": "100% Exclusive Interaction" },
     { "@type": "PropertyValue", "name": "Measurement", "value": "IoT Sensor Verified — not modelled" }
   ]
+}
+</script>
+
+<script>
+function toggleAdvMenu() {
+  var panel = document.getElementById('advMobilePanel');
+  var overlay = document.getElementById('advOverlay');
+  var btn = document.getElementById('advHamburger');
+  if (!panel || !overlay || !btn) return;
+  var open = panel.classList.toggle('active');
+  overlay.classList.toggle('active');
+  btn.classList.toggle('active');
+  btn.setAttribute('aria-expanded', open);
+  panel.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
 }
 </script>
 </body>

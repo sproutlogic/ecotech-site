@@ -34,12 +34,7 @@
   }
 }
 
-/* Mobile: show condensed agency link only */
-@media (max-width: 640px) {
-  .nav-agencies {
-    display: none;
-  }
-}
+/* Mobile: agency links hidden when hamburger is shown (both links are in mobile panel) */
 
 /* ════════════════════════════════════════════
    2. LED SCREEN VISUAL — Contextual Intelligence

@@ -1,5 +1,5 @@
 # robots.txt — ecotech.co.in
-# Hosted on Netlify
+# Hosted on Vercel
 
 User-agent: *
 Allow: /

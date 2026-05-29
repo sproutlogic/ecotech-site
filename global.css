@@ -594,6 +594,11 @@ h6 {
 .site-nav__links > li > a.active { color: #0F6E56; }
 .site-nav__links > li > a.active::after { width: 100%; }
 
+/* Mobile-only CTA item — hidden at desktop, visible inside hamburger menu */
+.site-nav__cta-mobile-item {
+    display: none;
+}
+
 /* Right group: CTA + hamburger */
 .site-nav__right {
     display: flex;
@@ -1096,9 +1101,30 @@ body.loaded .site-nav__right { animation: headerLogoIn 0.4s ease-out 0.3s both; 
         background: #f6fdf9;
     }
     .site-nav__cta {
-        font-size: 12px;
-        padding: 8px 14px;
+        display: none;
     }
+
+    /* Mobile dropdown CTA — shown only inside the hamburger menu */
+    .site-nav__cta-mobile-item {
+        display: block;
+        width: 100%;
+        padding: 12px clamp(1.5rem, 3vw, 2.5rem) 4px;
+        border-bottom: none !important;
+    }
+    .site-nav__cta-mobile-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 11px 20px;
+        background: #0F6E56;
+        color: #ffffff !important;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+        border-bottom: none !important;
+    }
+    .site-nav__cta-mobile-link:hover { background: #085041; }
 
     /* Solutions accordion on mobile */
     .site-nav__has-dropdown {

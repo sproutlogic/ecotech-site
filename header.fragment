@@ -114,6 +114,9 @@
 
       <li><a href="insights.html" data-nav="insights.html">Insights</a></li>
       <li><a href="about.html" data-nav="about.html">About</a></li>
+      <li class="site-nav__cta-mobile-item">
+        <a href="contact.html" class="site-nav__cta-mobile-link">Get in touch →</a>
+      </li>
     </ul>
 
     <div class="site-nav__right">
