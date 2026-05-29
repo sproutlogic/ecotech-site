@@ -3832,6 +3832,11 @@
     const isLeft = initStyle.includes('translateX(-');
     const isRight = initStyle.includes('translateX(4');
     const isUp = initStyle.includes('translateY');
+
+    // Check if element is already in viewport on page load
+    const rect = el.getBoundingClientRect();
+    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
     gsap.fromTo(el,
       {
         opacity: 0,
@@ -3840,9 +3845,19 @@
       },
       {
         opacity: 1, x: 0, y: 0, duration: 1.1, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 82%', toggleActions: 'play none none none' }
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          onEnter: () => {},
+          once: true
+        }
       }
     );
+
+    // Force animation immediately if element is already visible
+    if (isInViewport) {
+      gsap.to(el, { opacity: 1, x: 0, y: 0, duration: 0.6, delay: 0.2 });
+    }
   });
 
   /* ══════════════════════════════
